@@ -24,16 +24,16 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Install comfy-cli
-RUN pip install comfy-cli
+RUN pip install --no-cache-dir comfy-cli
 
 # Install ComfyUI
-RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.2.7
+RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.3.26
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
 
 # Install runpod
-RUN pip install runpod requests
+RUN pip install --no-cache-dir runpod requests
 
 # Support for the network volume
 ADD src/extra_model_paths.yaml ./
