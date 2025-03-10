@@ -1,0 +1,277 @@
+2025-03-10T23:12:32.892138010Z ==========
+2025-03-10T23:12:32.892155210Z == CUDA ==
+2025-03-10T23:12:32.892249694Z ==========
+2025-03-10T23:12:32.896183156Z CUDA Version 11.8.0
+2025-03-10T23:12:32.896188076Z Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+2025-03-10T23:12:32.896601760Z This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+2025-03-10T23:12:32.896605650Z By pulling and using the container, you accept the terms and conditions of this license:
+2025-03-10T23:12:32.896607870Z https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+2025-03-10T23:12:32.896612030Z A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+2025-03-10T23:12:32.908601784Z Setting up SSH...
+2025-03-10T23:12:33.790134164Z RSA key fingerprint:
+2025-03-10T23:12:33.795210534Z 3072 SHA256:IhiPOU8zTxRtiLMoxgH2bGzTCgXtuedXXvmDWTkcqyk root@a07781115191 (RSA)
+2025-03-10T23:12:33.849415947Z DSA key fingerprint:
+2025-03-10T23:12:33.852528821Z 1024 SHA256:5UNbcFt/mkdobsJ6ZUCocy2WM0P7kSvG9QBObT9a9yo root@a07781115191 (DSA)
+2025-03-10T23:12:33.855932626Z ECDSA key fingerprint:
+2025-03-10T23:12:33.859092022Z 256 SHA256:FG5k5hXZASWj7Ua93uXMKj0JWDVoFM5EL2Me6zRhUqA root@a07781115191 (ECDSA)
+2025-03-10T23:12:33.863123918Z ED25519 key fingerprint:
+2025-03-10T23:12:33.865937933Z 256 SHA256:/sntDQC3fVq6Fve7uiAh+lzsbwUE9FXQzg/+DBoNvu8 root@a07781115191 (ED25519)
+2025-03-10T23:12:33.869301755Z ssh: unrecognized service
+2025-03-10T23:12:33.869419950Z SSH host keys:
+2025-03-10T23:12:33.869502012Z Key: /etc/ssh/ssh_host_dsa_key.pub
+2025-03-10T23:12:33.874071746Z 1024 SHA256:5UNbcFt/mkdobsJ6ZUCocy2WM0P7kSvG9QBObT9a9yo root@a07781115191 (DSA)
+2025-03-10T23:12:33.874402787Z Key: /etc/ssh/ssh_host_ecdsa_key.pub
+2025-03-10T23:12:33.877278974Z 256 SHA256:FG5k5hXZASWj7Ua93uXMKj0JWDVoFM5EL2Me6zRhUqA root@a07781115191 (ECDSA)
+2025-03-10T23:12:33.877618535Z Key: /etc/ssh/ssh_host_ed25519_key.pub
+2025-03-10T23:12:33.881606009Z 256 SHA256:/sntDQC3fVq6Fve7uiAh+lzsbwUE9FXQzg/+DBoNvu8 root@a07781115191 (ED25519)
+2025-03-10T23:12:33.881941771Z Key: /etc/ssh/ssh_host_rsa_key.pub
+2025-03-10T23:12:33.884817888Z 3072 SHA256:IhiPOU8zTxRtiLMoxgH2bGzTCgXtuedXXvmDWTkcqyk root@a07781115191 (RSA)
+2025-03-10T23:12:33.885181400Z Starting Jupyter Lab...
+2025-03-10T23:12:33.885388817Z Jupyter Lab started
+2025-03-10T23:12:33.885433348Z Exporting environment variables...
+2025-03-10T23:12:33.887982164Z runpod-worker-comfy: Starting ComfyUI Locally
+2025-03-10T23:12:33.888162310Z runpod-worker-comfy: Starting RunPod Handler
+2025-03-10T23:12:33.931835838Z Adding extra search path checkpoints /runpod-volume/models/checkpoints
+2025-03-10T23:12:33.931850198Z Adding extra search path clip /runpod-volume/models/clip
+2025-03-10T23:12:33.931864449Z Adding extra search path clip_vision /runpod-volume/models/clip_vision
+2025-03-10T23:12:33.931878739Z Adding extra search path configs /runpod-volume/models/configs
+2025-03-10T23:12:33.931907211Z Adding extra search path controlnet /runpod-volume/models/controlnet
+2025-03-10T23:12:33.931916071Z Adding extra search path embeddings /runpod-volume/models/embeddings
+2025-03-10T23:12:33.931940652Z Adding extra search path loras /runpod-volume/models/loras
+2025-03-10T23:12:33.931958892Z Adding extra search path upscale_models /runpod-volume/models/upscale_models
+2025-03-10T23:12:33.931981613Z Adding extra search path vae /runpod-volume/models/vae
+2025-03-10T23:12:33.931998614Z Adding extra search path unet /runpod-volume/models/unet
+2025-03-10T23:12:33.932023614Z Adding extra search path style_models /runpod-volume/models/style_models
+2025-03-10T23:12:35.024646533Z [START] Security scan
+2025-03-10T23:12:35.024661443Z [DONE] Security scan
+2025-03-10T23:12:35.024664353Z ## ComfyUI-Manager: installing dependencies done.
+2025-03-10T23:12:35.024667214Z ** ComfyUI startup time: 2025-03-10 23:12:35.024
+2025-03-10T23:12:35.024700905Z ** Platform: Linux
+2025-03-10T23:12:35.024761227Z ** Python version: 3.10.12 (main, Feb  4 2025, 14:57:36) [GCC 11.4.0]
+2025-03-10T23:12:35.024795578Z ** Python executable: /usr/bin/python3
+2025-03-10T23:12:35.024851910Z ** ComfyUI Path: /comfyui
+2025-03-10T23:12:35.024898081Z ** ComfyUI Base Folder Path: /comfyui
+2025-03-10T23:12:35.024938272Z ** User directory: /comfyui/user
+2025-03-10T23:12:35.025000115Z ** ComfyUI-Manager config path: /comfyui/user/default/ComfyUI-Manager/config.ini
+2025-03-10T23:12:35.025042226Z ** Log path: /comfyui/user/comfyui.log
+2025-03-10T23:12:35.723788790Z --- Starting Serverless Worker |  Version 1.7.7 ---
+2025-03-10T23:12:35.723897914Z INFO   | Starting API server.
+2025-03-10T23:12:35.723908694Z DEBUG  | Not deployed on RunPod serverless, pings will not be sent.
+2025-03-10T23:12:35.753644654Z INFO:     Started server process [68]
+2025-03-10T23:12:35.753657135Z INFO:     Waiting for application startup.
+2025-03-10T23:12:35.753784669Z INFO:     Application startup complete.
+2025-03-10T23:12:35.754147431Z INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-03-10T23:12:36.006361191Z Prestartup times for custom nodes:
+2025-03-10T23:12:36.006421004Z    2.1 seconds: /comfyui/custom_nodes/ComfyUI-Manager
+2025-03-10T23:12:37.183421509Z Checkpoint files will always be loaded safely.
+2025-03-10T23:12:37.437310055Z Total VRAM 16076 MB, total RAM 257571 MB
+2025-03-10T23:12:37.437344406Z pytorch version: 2.6.0+cu124
+2025-03-10T23:12:37.437613155Z Set vram state to: NORMAL_VRAM
+2025-03-10T23:12:37.437812782Z Device: cuda:0 NVIDIA RTX 2000 Ada Generation : cudaMallocAsync
+2025-03-10T23:12:38.332273917Z Using pytorch attention
+2025-03-10T23:12:39.280175299Z ComfyUI version: 0.3.26
+2025-03-10T23:12:39.280196700Z ComfyUI frontend version: 1.11.8
+2025-03-10T23:12:39.282478677Z [Prompt Server] web root: /usr/local/lib/python3.10/dist-packages/comfyui_frontend_package/static
+2025-03-10T23:12:39.514047103Z ### Loading: ComfyUI-Manager (V3.30.3)
+2025-03-10T23:12:39.514143406Z [ComfyUI-Manager] network_mode: public
+2025-03-10T23:12:39.540832444Z ### ComfyUI Revision: 3238 [9aac21f8] *DETACHED | Released on '2025-03-09'
+2025-03-10T23:12:39.561062634Z ### Loading: ControlnetAux (V0.3 beta)
+2025-03-10T23:12:39.806039231Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+2025-03-10T23:12:39.812473407Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+2025-03-10T23:12:39.824994648Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
+2025-03-10T23:12:39.853234928Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+2025-03-10T23:12:39.880882087Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+2025-03-10T23:12:40.076978181Z generated new fontManager
+2025-03-10T23:12:40.314017941Z /usr/local/lib/python3.10/dist-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+2025-03-10T23:12:40.314036361Z   warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+2025-03-10T23:12:40.314430315Z /usr/local/lib/python3.10/dist-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+2025-03-10T23:12:40.314436015Z   warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+2025-03-10T23:12:40.315006384Z /usr/local/lib/python3.10/dist-packages/controlnet_aux/segment_anything/modeling/tiny_vit_sam.py:654: UserWarning: Overwriting tiny_vit_5m_224 in registry with controlnet_aux.segment_anything.modeling.tiny_vit_sam.tiny_vit_5m_224. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+2025-03-10T23:12:40.315014534Z   return register_model(fn_wrapper)
+2025-03-10T23:12:40.315231432Z /usr/local/lib/python3.10/dist-packages/controlnet_aux/segment_anything/modeling/tiny_vit_sam.py:654: UserWarning: Overwriting tiny_vit_11m_224 in registry with controlnet_aux.segment_anything.modeling.tiny_vit_sam.tiny_vit_11m_224. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+2025-03-10T23:12:40.315242522Z   return register_model(fn_wrapper)
+2025-03-10T23:12:40.315472520Z /usr/local/lib/python3.10/dist-packages/controlnet_aux/segment_anything/modeling/tiny_vit_sam.py:654: UserWarning: Overwriting tiny_vit_21m_224 in registry with controlnet_aux.segment_anything.modeling.tiny_vit_sam.tiny_vit_21m_224. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+2025-03-10T23:12:40.315476120Z   return register_model(fn_wrapper)
+2025-03-10T23:12:40.315679637Z /usr/local/lib/python3.10/dist-packages/controlnet_aux/segment_anything/modeling/tiny_vit_sam.py:654: UserWarning: Overwriting tiny_vit_21m_384 in registry with controlnet_aux.segment_anything.modeling.tiny_vit_sam.tiny_vit_21m_384. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+2025-03-10T23:12:40.315681807Z   return register_model(fn_wrapper)
+2025-03-10T23:12:40.315899894Z /usr/local/lib/python3.10/dist-packages/controlnet_aux/segment_anything/modeling/tiny_vit_sam.py:654: UserWarning: Overwriting tiny_vit_21m_512 in registry with controlnet_aux.segment_anything.modeling.tiny_vit_sam.tiny_vit_21m_512. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+2025-03-10T23:12:40.315902514Z   return register_model(fn_wrapper)
+2025-03-10T23:12:40.326106068Z Adding /comfyui/custom_nodes to sys.path
+2025-03-10T23:12:40.346341058Z Could not find efficiency nodes
+2025-03-10T23:12:40.350403624Z Could not find ControlNetPreprocessors nodes
+2025-03-10T23:12:40.350945822Z Could not find AdvancedControlNet nodes
+2025-03-10T23:12:40.351935625Z Could not find AnimateDiff nodes
+2025-03-10T23:12:40.352843896Z Could not find IPAdapter nodes
+2025-03-10T23:12:40.359569802Z Could not find VideoHelperSuite nodes
+2025-03-10T23:12:40.360780903Z Could not load ImpactPack nodes Could not find ImpactPack nodes
+2025-03-10T23:12:40.443333349Z Import times for custom nodes:
+2025-03-10T23:12:40.443364660Z    0.0 seconds: /comfyui/custom_nodes/websocket_image_save.py
+2025-03-10T23:12:40.443400471Z    0.0 seconds: /comfyui/custom_nodes/cg-use-everywhere
+2025-03-10T23:12:40.443438943Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-BRIA_AI-RMBG
+2025-03-10T23:12:40.443486054Z    0.0 seconds: /comfyui/custom_nodes/ComfyMath
+2025-03-10T23:12:40.443521636Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-Custom-Scripts
+2025-03-10T23:12:40.443554506Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-Manager
+2025-03-10T23:12:40.443584338Z    0.1 seconds: /comfyui/custom_nodes/comfyui-art-venture
+2025-03-10T23:12:40.443616079Z    0.8 seconds: /comfyui/custom_nodes/ComfyUI-ControlnetAux
+2025-03-10T23:12:40.451013227Z Starting server
+2025-03-10T23:12:40.451244435Z To see the GUI go to: http://0.0.0.0:8188
+2025-03-10T23:12:40.451382129Z To see the GUI go to: http://[::]:8188
+2025-03-10T23:12:43.761329253Z FETCH ComfyRegistry Data: 5/57
+2025-03-10T23:12:47.957149261Z FETCH ComfyRegistry Data: 10/57
+2025-03-10T23:12:52.188151673Z FETCH ComfyRegistry Data: 15/57
+2025-03-10T23:12:56.426282605Z FETCH ComfyRegistry Data: 20/57
+2025-03-10T23:13:00.617285252Z FETCH ComfyRegistry Data: 25/57
+2025-03-10T23:13:04.789918481Z FETCH ComfyRegistry Data: 30/57
+2025-03-10T23:13:09.036945352Z FETCH ComfyRegistry Data: 35/57
+2025-03-10T23:13:14.027875006Z FETCH ComfyRegistry Data: 40/57
+2025-03-10T23:13:18.833167107Z FETCH ComfyRegistry Data: 45/57
+2025-03-10T23:13:23.150958648Z FETCH ComfyRegistry Data: 50/57
+2025-03-10T23:13:27.422642777Z FETCH ComfyRegistry Data: 55/57
+2025-03-10T23:13:29.904546528Z FETCH ComfyRegistry Data [DONE]
+2025-03-10T23:13:30.109172439Z [ComfyUI-Manager] default cache updated: https://api.comfy.org/nodes
+2025-03-10T23:13:30.135590427Z nightly_channel:
+2025-03-10T23:13:30.135605077Z https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/remote
+2025-03-10T23:13:30.296610570Z FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json [DONE]
+2025-03-10T23:13:30.328136781Z [ComfyUI-Manager] All startup tasks have been completed.
+2025-03-10T23:14:31.451618319Z [ERROR] An error occurred while retrieving information for the 'controlaux_hed' node.
+2025-03-10T23:14:31.451975420Z Traceback (most recent call last):
+2025-03-10T23:14:31.451982241Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.451986501Z     out[x] = node_info(x)
+2025-03-10T23:14:31.451990471Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.451994311Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.451998501Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.452001991Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452005521Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.452057593Z [ERROR] An error occurred while retrieving information for the 'controlaux_midas' node.
+2025-03-10T23:14:31.452191268Z Traceback (most recent call last):
+2025-03-10T23:14:31.452201728Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.452204768Z     out[x] = node_info(x)
+2025-03-10T23:14:31.452207338Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.452209608Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452212228Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.452214568Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452216849Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.452235549Z [ERROR] An error occurred while retrieving information for the 'controlaux_mlsd' node.
+2025-03-10T23:14:31.452340763Z Traceback (most recent call last):
+2025-03-10T23:14:31.452343583Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.452345893Z     out[x] = node_info(x)
+2025-03-10T23:14:31.452348113Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.452350343Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452352563Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.452354793Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452356993Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.452397915Z [ERROR] An error occurred while retrieving information for the 'controlaux_openpose' node.
+2025-03-10T23:14:31.452481268Z Traceback (most recent call last):
+2025-03-10T23:14:31.452483968Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.452486258Z     out[x] = node_info(x)
+2025-03-10T23:14:31.452488488Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.452490678Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452492888Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.452495168Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452497588Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.452528009Z [ERROR] An error occurred while retrieving information for the 'controlaux_pidi' node.
+2025-03-10T23:14:31.452604402Z Traceback (most recent call last):
+2025-03-10T23:14:31.452607132Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.452609422Z     out[x] = node_info(x)
+2025-03-10T23:14:31.452611622Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.452613842Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452625252Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.452627782Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452629993Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.452648663Z [ERROR] An error occurred while retrieving information for the 'controlaux_dwpose' node.
+2025-03-10T23:14:31.452736546Z Traceback (most recent call last):
+2025-03-10T23:14:31.452745857Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.452748186Z     out[x] = node_info(x)
+2025-03-10T23:14:31.452750387Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.452752617Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452754837Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.452757127Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452759317Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.452791098Z [ERROR] An error occurred while retrieving information for the 'controlaux_normal_bae' node.
+2025-03-10T23:14:31.452876431Z Traceback (most recent call last):
+2025-03-10T23:14:31.452879311Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.452881611Z     out[x] = node_info(x)
+2025-03-10T23:14:31.452883771Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.452885951Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452888131Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.452890301Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.452892431Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.452921532Z [ERROR] An error occurred while retrieving information for the 'controlaux_lineart' node.
+2025-03-10T23:14:31.453000525Z Traceback (most recent call last):
+2025-03-10T23:14:31.453003135Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453005395Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453007545Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453009925Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453012085Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453014306Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453016486Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.453052667Z [ERROR] An error occurred while retrieving information for the 'controlaux_lineart_anime' node.
+2025-03-10T23:14:31.453132890Z Traceback (most recent call last):
+2025-03-10T23:14:31.453135450Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453137740Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453139960Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453142170Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453144560Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453146720Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453148890Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.453177331Z [ERROR] An error occurred while retrieving information for the 'controlaux_zoe' node.
+2025-03-10T23:14:31.453252383Z Traceback (most recent call last):
+2025-03-10T23:14:31.453255223Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453257534Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453259704Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453266694Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453269154Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453273264Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453275474Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.453298365Z [ERROR] An error occurred while retrieving information for the 'controlaux_sam' node.
+2025-03-10T23:14:31.453373687Z Traceback (most recent call last):
+2025-03-10T23:14:31.453376238Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453378688Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453380878Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453383038Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453387028Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453389258Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453391448Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.453415059Z [ERROR] An error occurred while retrieving information for the 'controlaux_leres' node.
+2025-03-10T23:14:31.453491671Z Traceback (most recent call last):
+2025-03-10T23:14:31.453494282Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453496492Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453498642Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453500852Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453503342Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453505542Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453507752Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.453532853Z [ERROR] An error occurred while retrieving information for the 'controlaux_canny' node.
+2025-03-10T23:14:31.453609626Z Traceback (most recent call last):
+2025-03-10T23:14:31.453612235Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453614576Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453616776Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453618946Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453621106Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453623246Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453625456Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.453652087Z [ERROR] An error occurred while retrieving information for the 'controlaux_content' node.
+2025-03-10T23:14:31.453729730Z Traceback (most recent call last):
+2025-03-10T23:14:31.453732299Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453734520Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453736680Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453738850Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453741000Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453743480Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453745740Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:31.453781461Z [ERROR] An error occurred while retrieving information for the 'controlaux_face_detector' node.
+2025-03-10T23:14:31.453859564Z Traceback (most recent call last):
+2025-03-10T23:14:31.453862294Z   File "/comfyui/server.py", line 591, in get_object_info
+2025-03-10T23:14:31.453868794Z     out[x] = node_info(x)
+2025-03-10T23:14:31.453871124Z   File "/comfyui/server.py", line 559, in node_info
+2025-03-10T23:14:31.453873324Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453875864Z   File "/comfyui/server.py", line 559, in <dictcomp>
+2025-03-10T23:14:31.453878075Z     info['input_order'] = {key: list(value.keys()) for (key, value) in obj_class.INPUT_TYPES().items()}
+2025-03-10T23:14:31.453880215Z AttributeError: 'str' object has no attribute 'keys'
+2025-03-10T23:14:47.397682524Z FETCH DATA from: /comfyui/user/default/ComfyUI-Manager/cache/1742899825_extension-node-map.json [DONE]
+2025-03-10T23:14:47.936078277Z [ComfyUI-Manager] The ComfyRegistry cache update is still in progress, so an outdated cache is being used.
+2025-03-10T23:14:47.964176832Z nightly_channel:
+2025-03-10T23:14:47.964203553Z https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/cache
+2025-03-10T23:14:47.967968189Z FETCH DATA from: /comfyui/user/default/ComfyUI-Manager/cache/1514988643_custom-node-list.json [DONE]
+2025-03-10T23:14:47.985689215Z FETCH DATA from: /comfyui/user/default/ComfyUI-Manager/cache/746607195_github-stats.json [DONE]
+2025-03-10T23:14:48.088839773Z FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extras.json [DONE]
