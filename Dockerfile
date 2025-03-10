@@ -9,6 +9,8 @@ ENV PIP_PREFER_BINARY=1
 ENV PYTHONUNBUFFERED=1 
 # Speed up some cmake builds
 ENV CMAKE_BUILD_PARALLEL_LEVEL=8
+# Disable AWS EC2 metadata check
+ENV AWS_EC2_METADATA_DISABLED=true
 
 # Install Python, git and other necessary tools
 RUN apt-get update && apt-get install -y \
@@ -48,6 +50,16 @@ WORKDIR /comfyui
 
 # Install runpod
 RUN pip install --no-cache-dir runpod requests
+
+# Install AWS SDK and configure credentials directory
+RUN pip install --no-cache-dir boto3 botocore && \
+    mkdir -p /root/.aws
+
+# Create AWS credentials file
+RUN echo "[default]\n\
+aws_access_key_id=${AWS_ACCESS_KEY_ID}\n\
+aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}\n\
+region=${AWS_REGION}" > /root/.aws/credentials
 
 # Install paddlepaddle paddleocr
 RUN pip install --no-cache-dir paddlepaddle paddleocr
