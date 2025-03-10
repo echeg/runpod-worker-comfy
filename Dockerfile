@@ -130,5 +130,26 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 67c974c96e6472316cb4bf4326281d9f86a25ae6 && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# ComfyUI-KJNodes
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/kijai/ComfyUI-KJNodes.git && \
+    cd ComfyUI-KJNodes && \
+    git checkout 3f141b8f1ca1c832a1c6accd806f2d2f40fd4075 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-RMBG
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/1038lab/ComfyUI-RMBG.git && \
+    cd ComfyUI-RMBG && \
+    git checkout 919fecfd6dbd5caf51543561ad1b1e69e1170a16 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI_essentials
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/cubiq/ComfyUI_essentials.git && \
+    cd ComfyUI_essentials && \
+    git checkout 33ff89fd354d8ec3ab6affb605a79a931b445d99 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+    
 # Start container
 CMD ["/start.sh"]
