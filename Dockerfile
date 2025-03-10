@@ -54,5 +54,8 @@ ADD *snapshot*.json /
 # Restore the snapshot to install custom nodes
 RUN /restore_snapshot.sh
 
+# Install JupyterLab
+RUN pip install --no-cache-dir jupyterlab
+
 # Start container
 CMD ["/start.sh"]
