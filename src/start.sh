@@ -94,7 +94,7 @@ start_jupyter
 export_env_vars
 
 # Serve the API and don't shutdown the container
-if [ "$SERVE_API_LOCALLY" == "true" ]; then
+if [ "$SERVE_API_LOCALLY" == "true" ] || [ "$SERVER_INPOD" == "true" ]; then
     echo "runpod-worker-comfy: Starting ComfyUI Locally"
     python3 /comfyui/main.py --disable-auto-launch --disable-metadata --listen &
 
