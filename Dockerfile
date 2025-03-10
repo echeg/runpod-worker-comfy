@@ -57,5 +57,28 @@ RUN /restore_snapshot.sh
 # Install JupyterLab
 RUN pip install --no-cache-dir jupyterlab
 
+# Установка custom nodes для ComfyUI
+
+# cg-use-everywhere
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/chrisgoringe/cg-use-everywhere.git && \
+    cd cg-use-everywhere && \
+    git checkout ce510b97d10e69d5fd0042e115ecd946890d2079 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyMath
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/evanspearman/ComfyMath.git && \
+    cd ComfyMath && \
+    git checkout 939bb813f1c0ace959b62f20bb2da47190c4e211 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# comfyui-art-venture
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/sipherxyz/comfyui-art-venture.git && \
+    cd comfyui-art-venture && \
+    git checkout 50abaace756b96f5f5dc2c9d72826ef371afd45e && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
 # Start container
 CMD ["/start.sh"]
