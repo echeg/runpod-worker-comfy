@@ -101,5 +101,26 @@ RUN cd /comfyui/custom_nodes && \
     git checkout bc8922deff73f59311c05cef27b9d4caaf43e87b && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# was-node-suite-comfyui
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/WASasquatch/was-node-suite-comfyui.git && \
+    cd was-node-suite-comfyui && \
+    git checkout 056badacda52e88d29d6a65f9509cd3115ace0f2 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# rgthree-comfy
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/rgthree/rgthree-comfy.git && \
+    cd rgthree-comfy && \
+    git checkout 5d771b8b56a343c24a26e8cea1f0c87c3d58102f && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# x-flux-comfyui
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/XLabs-AI/x-flux-comfyui.git && \
+    cd x-flux-comfyui && \
+    git checkout 00328556efc9472410d903639dc9e68a8471f7ac && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
 # Start container
 CMD ["/start.sh"]
