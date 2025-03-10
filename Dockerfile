@@ -321,7 +321,7 @@ RUN cd /comfyui/custom_nodes && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
 # Install notebook
-RUN pip install --no-cache-dir notebook==6.5.5
+RUN pip install --no-cache-dir jupyterlab
 
 # Support for the network volume
 ADD src/extra_model_paths.yaml ./
