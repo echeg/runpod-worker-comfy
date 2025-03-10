@@ -87,13 +87,6 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 827fcd63ff0cfa7fbc544b8d2f4c1e3f3012742d && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-# ComfyUI-ControlnetAux
-RUN cd /comfyui/custom_nodes && \
-    git clone https://github.com/madtunebk/ComfyUI-ControlnetAux.git && \
-    cd ComfyUI-ControlnetAux && \
-    git checkout 8ce40f1795395e9339b96acd951a51a8016457c5 && \
-    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
-
 # ComfyUI-Custom-Scripts
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git && \
@@ -120,6 +113,21 @@ RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/XLabs-AI/x-flux-comfyui.git && \
     cd x-flux-comfyui && \
     git checkout 00328556efc9472410d903639dc9e68a8471f7ac && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+
+# ComfyUI_Comfyroll_CustomNodes
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git && \
+    cd ComfyUI_Comfyroll_CustomNodes && \
+    git checkout d78b780ae43fcf8c6b7c6505e6ffb4584281ceca && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# comfyui-mixlab-nodes
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/shadowcz007/comfyui-mixlab-nodes.git && \
+    cd comfyui-mixlab-nodes && \
+    git checkout 67c974c96e6472316cb4bf4326281d9f86a25ae6 && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
 # Start container
