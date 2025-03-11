@@ -172,6 +172,27 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 65937a75ebdbe5c35afe6474dfe12673aca5f0ac && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
   
+# ComfyUI-QualityOfLifeSuit_Omar92
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/omar92/ComfyUI-QualityOfLifeSuit_Omar92.git && \
+    cd ComfyUI-QualityOfLifeSuit_Omar92 && \
+    git checkout f09d10dea0afbd3984a284acf8f0913a634e36ec && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-SAMURAI--SAM2-
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/takemetosiberia/ComfyUI-SAMURAI--SAM2-.git && \
+    cd ComfyUI-SAMURAI--SAM2- && \
+    git checkout 42b13f2e4f859f9da058efb407d3aeede8a4f6ce && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-segment-anything-2
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/kijai/ComfyUI-segment-anything-2.git && \
+    cd ComfyUI-segment-anything-2 && \
+    git checkout 059815ecc55b17ae9b47d15ed9b39b243d73b25f && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+    
     
 # Start container
 CMD ["/start.sh"]
