@@ -1,31 +1,15 @@
 
 {
+    DepthAnythingV2Preprocessor
+    AIO_Preprocessor
+    Bedrock - Claude Multimodal
+    UltimateSDUpscaleCustomSample
+    ImpactSwitch
+    Note _O
+
     "comfyui": "55add502206ed5511a04215db4ab8f1cfa3d99ae",
     "git_custom_nodes": {
-        "https://github.com/chrisgoringe/cg-use-everywhere": {
-            "hash": "ce510b97d10e69d5fd0042e115ecd946890d2079",
-            "disabled": false
-        },
-        "https://github.com/evanspearman/ComfyMath": {
-            "hash": "939bb813f1c0ace959b62f20bb2da47190c4e211",
-            "disabled": false
-        },
-        "https://github.com/sipherxyz/comfyui-art-venture": {
-            "hash": "50abaace756b96f5f5dc2c9d72826ef371afd45e",
-            "disabled": false
-        },
-        "https://github.com/ZHO-ZHO-ZHO/ComfyUI-BRIA_AI-RMBG": {
-            "hash": "827fcd63ff0cfa7fbc544b8d2f4c1e3f3012742d",
-            "disabled": false
-        },
-        "https://github.com/madtunebk/ComfyUI-ControlnetAux": {
-            "hash": "8ce40f1795395e9339b96acd951a51a8016457c5",
-            "disabled": false
-        },
-        "https://github.com/pythongosssss/ComfyUI-Custom-Scripts": {
-            "hash": "bc8922deff73f59311c05cef27b9d4caaf43e87b",
-            "disabled": false
-        },
+
         "https://github.com/yolain/ComfyUI-Easy-Use.git": {
             "hash": "65937a75ebdbe5c35afe6474dfe12673aca5f0ac",
             "disabled": false
@@ -62,10 +46,7 @@
             "hash": "20092c37b9dfc481ca44e8577a9d4a9d426c0e56",
             "disabled": false
         },
-        "https://github.com/kijai/ComfyUI-KJNodes": {
-            "hash": "3f141b8f1ca1c832a1c6accd806f2d2f40fd4075",
-            "disabled": false
-        },
+
         "https://github.com/Layer-norm/comfyui-lama-remover": {
             "hash": "070c0226dfda85e29f2484a9ba321cc02ef8a6b0",
             "disabled": false
@@ -82,20 +63,12 @@
             "hash": "9643aed8f809a76ca4f24365591da0e8d7d9f9b3",
             "disabled": false
         },
-        "https://github.com/shadowcz007/comfyui-mixlab-nodes": {
-            "hash": "67c974c96e6472316cb4bf4326281d9f86a25ae6",
-            "disabled": false
-        },
         "https://github.com/NimaNzrii/comfyui-photoshop": {
             "hash": "732c8b4dd1c91765763dbc68dbecb8028f8a95ee",
             "disabled": false
         },
         "https://github.com/omar92/ComfyUI-QualityOfLifeSuit_Omar92": {
             "hash": "f09d10dea0afbd3984a284acf8f0913a634e36ec",
-            "disabled": false
-        },
-        "https://github.com/1038lab/ComfyUI-RMBG": {
-            "hash": "919fecfd6dbd5caf51543561ad1b1e69e1170a16",
             "disabled": false
         },
         "https://github.com/takemetosiberia/ComfyUI-SAMURAI--SAM2-": {
@@ -114,16 +87,8 @@
             "hash": "0a87efa252ae5e8f4af1225b0e19c867f908376a",
             "disabled": false
         },
-        "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes": {
-            "hash": "d78b780ae43fcf8c6b7c6505e6ffb4584281ceca",
-            "disabled": false
-        },
         "https://github.com/Fannovel16/comfyui_controlnet_aux": {
             "hash": "5a049bde9cc117dafc327cded156459289097ea1",
-            "disabled": false
-        },
-        "https://github.com/cubiq/ComfyUI_essentials": {
-            "hash": "33ff89fd354d8ec3ab6affb605a79a931b445d99",
             "disabled": false
         },
         "https://github.com/TTPlanetPig/Comfyui_JC2": {
@@ -162,18 +127,7 @@
             "hash": "637bc18f8e18cc662a8411efbc7013adc7845ae7",
             "disabled": false
         },
-        "https://github.com/WASasquatch/was-node-suite-comfyui": {
-            "hash": "056badacda52e88d29d6a65f9509cd3115ace0f2",
-            "disabled": false
-        },
-        "https://github.com/rgthree/rgthree-comfy": {
-            "hash": "5d771b8b56a343c24a26e8cea1f0c87c3d58102f",
-            "disabled": false
-        },
-        "https://github.com/XLabs-AI/x-flux-comfyui": {
-            "hash": "00328556efc9472410d903639dc9e68a8471f7ac",
-            "disabled": false
-        }
+
     },
     "cnr_custom_nodes": {},
     "file_custom_nodes": [
