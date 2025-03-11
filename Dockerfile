@@ -150,6 +150,28 @@ RUN cd /comfyui/custom_nodes && \
     cd ComfyUI_essentials && \
     git checkout 33ff89fd354d8ec3ab6affb605a79a931b445d99 && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI_UltimateSDUpscale
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git && \
+    cd ComfyUI_UltimateSDUpscale && \
+    git checkout ff3fdfeee03de46d4462211cffd165d27155e858 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-Impact-Pack
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack.git && \
+    cd ComfyUI-Impact-Pack && \
+    git checkout d8738eee2f6c8c9a17ca42ab71f47ce35ccca3e7 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-Easy-Use
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/yolain/ComfyUI-Easy-Use.git && \
+    cd ComfyUI-Easy-Use && \
+    git checkout 65937a75ebdbe5c35afe6474dfe12673aca5f0ac && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+  
     
 # Start container
 CMD ["/start.sh"]
