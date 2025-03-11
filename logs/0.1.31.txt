@@ -1,0 +1,201 @@
+2025-03-11T21:43:39.204009229Z ==========
+2025-03-11T21:43:39.204032239Z == CUDA ==
+2025-03-11T21:43:39.204085151Z ==========
+2025-03-11T21:43:39.207035827Z CUDA Version 11.8.0
+2025-03-11T21:43:39.208086348Z Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+2025-03-11T21:43:39.209008785Z This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+2025-03-11T21:43:39.209011075Z By pulling and using the container, you accept the terms and conditions of this license:
+2025-03-11T21:43:39.209013035Z https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+2025-03-11T21:43:39.209016765Z A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+2025-03-11T21:43:39.222104539Z Setting up SSH...
+2025-03-11T21:43:39.661370970Z RSA key fingerprint:
+2025-03-11T21:43:39.666244994Z 3072 SHA256:+mKawGM6fqvOOBVHx0qwfxxr56zlVGAcBw2sbIDPLJQ root@44fd211bc560 (RSA)
+2025-03-11T21:43:39.695909494Z DSA key fingerprint:
+2025-03-11T21:43:39.699007274Z 1024 SHA256:YWbjh+Gr7nhtdxT6ebB1xG0xwaJQdNdBJWUYOjJc10g root@44fd211bc560 (DSA)
+2025-03-11T21:43:39.702943110Z ECDSA key fingerprint:
+2025-03-11T21:43:39.706843815Z 256 SHA256:0laEUur3u9hWwgLoNKbV/ZF3K7f6RJd2ZOCN2aXhf2w root@44fd211bc560 (ECDSA)
+2025-03-11T21:43:39.711286015Z ED25519 key fingerprint:
+2025-03-11T21:43:39.714758327Z 256 SHA256:LmLDYPp1wAJpz668ShdnFCi4VNxVadOWPmJdjCVtN6k root@44fd211bc560 (ED25519)
+2025-03-11T21:43:39.719476175Z ssh: unrecognized service
+2025-03-11T21:43:39.719870076Z SSH host keys:
+2025-03-11T21:43:39.719926468Z Key: /etc/ssh/ssh_host_dsa_key.pub
+2025-03-11T21:43:39.723056720Z 1024 SHA256:YWbjh+Gr7nhtdxT6ebB1xG0xwaJQdNdBJWUYOjJc10g root@44fd211bc560 (DSA)
+2025-03-11T21:43:39.723388349Z Key: /etc/ssh/ssh_host_ecdsa_key.pub
+2025-03-11T21:43:39.726581353Z 256 SHA256:0laEUur3u9hWwgLoNKbV/ZF3K7f6RJd2ZOCN2aXhf2w root@44fd211bc560 (ECDSA)
+2025-03-11T21:43:39.726912073Z Key: /etc/ssh/ssh_host_ed25519_key.pub
+2025-03-11T21:43:39.730663553Z 256 SHA256:LmLDYPp1wAJpz668ShdnFCi4VNxVadOWPmJdjCVtN6k root@44fd211bc560 (ED25519)
+2025-03-11T21:43:39.730846448Z Key: /etc/ssh/ssh_host_rsa_key.pub
+2025-03-11T21:43:39.734060702Z 3072 SHA256:+mKawGM6fqvOOBVHx0qwfxxr56zlVGAcBw2sbIDPLJQ root@44fd211bc560 (RSA)
+2025-03-11T21:43:39.734410983Z Starting Jupyter Lab...
+2025-03-11T21:43:39.734629609Z Jupyter Lab started
+2025-03-11T21:43:39.734681540Z Exporting environment variables...
+2025-03-11T21:43:39.737413591Z runpod-worker-comfy: Starting ComfyUI Locally
+2025-03-11T21:43:39.737591386Z runpod-worker-comfy: Starting RunPod Handler
+2025-03-11T21:43:39.781542005Z Adding extra search path checkpoints /runpod-volume/models/checkpoints
+2025-03-11T21:43:39.781552985Z Adding extra search path clip /runpod-volume/models/clip
+2025-03-11T21:43:39.781566765Z Adding extra search path clip_vision /runpod-volume/models/clip_vision
+2025-03-11T21:43:39.781575826Z Adding extra search path configs /runpod-volume/models/configs
+2025-03-11T21:43:39.781608177Z Adding extra search path controlnet /runpod-volume/models/controlnet
+2025-03-11T21:43:39.781630157Z Adding extra search path embeddings /runpod-volume/models/embeddings
+2025-03-11T21:43:39.781648578Z Adding extra search path loras /runpod-volume/models/loras
+2025-03-11T21:43:39.781664898Z Adding extra search path upscale_models /runpod-volume/models/upscale_models
+2025-03-11T21:43:39.781681589Z Adding extra search path vae /runpod-volume/models/vae
+2025-03-11T21:43:39.781699729Z Adding extra search path unet /runpod-volume/models/unet
+2025-03-11T21:43:39.781728350Z Adding extra search path style_models /runpod-volume/models/style_models
+2025-03-11T21:43:40.955539993Z [START] Security scan
+2025-03-11T21:43:40.955566964Z [DONE] Security scan
+2025-03-11T21:43:40.955573194Z ## ComfyUI-Manager: installing dependencies done.
+2025-03-11T21:43:40.955578654Z ** ComfyUI startup time: 2025-03-11 21:43:40.955
+2025-03-11T21:43:40.955620146Z ** Platform: Linux
+2025-03-11T21:43:40.955625446Z ** Python version: 3.10.12 (main, Feb  4 2025, 14:57:36) [GCC 11.4.0]
+2025-03-11T21:43:40.955684087Z ** Python executable: /usr/bin/python3
+2025-03-11T21:43:40.955732449Z ** ComfyUI Path: /comfyui
+2025-03-11T21:43:40.955740039Z ** ComfyUI Base Folder Path: /comfyui
+2025-03-11T21:43:40.955788470Z ** User directory: /comfyui/user
+2025-03-11T21:43:40.955840692Z ** ComfyUI-Manager config path: /comfyui/user/default/ComfyUI-Manager/config.ini
+2025-03-11T21:43:40.955896394Z ** Log path: /comfyui/user/comfyui.log
+2025-03-11T21:43:41.588448414Z --- Starting Serverless Worker |  Version 1.7.7 ---
+2025-03-11T21:43:41.588636969Z INFO   | Starting API server.
+2025-03-11T21:43:41.588643209Z DEBUG  | Not deployed on RunPod serverless, pings will not be sent.
+2025-03-11T21:43:41.617671581Z INFO:     Started server process [68]
+2025-03-11T21:43:41.617694212Z INFO:     Waiting for application startup.
+2025-03-11T21:43:41.617854476Z INFO:     Application startup complete.
+2025-03-11T21:43:41.618261648Z INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-03-11T21:43:42.025342167Z Prestartup times for custom nodes:
+2025-03-11T21:43:42.025363427Z    0.0 seconds: /comfyui/custom_nodes/rgthree-comfy
+2025-03-11T21:43:42.025407089Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-Easy-Use
+2025-03-11T21:43:42.025447720Z    2.2 seconds: /comfyui/custom_nodes/ComfyUI-Manager
+2025-03-11T21:43:43.265811744Z Checkpoint files will always be loaded safely.
+2025-03-11T21:43:43.427660931Z Total VRAM 16076 MB, total RAM 257573 MB
+2025-03-11T21:43:43.427682661Z pytorch version: 2.6.0+cu124
+2025-03-11T21:43:43.427950659Z Set vram state to: NORMAL_VRAM
+2025-03-11T21:43:43.428187536Z Device: cuda:0 NVIDIA RTX 2000 Ada Generation : cudaMallocAsync
+2025-03-11T21:43:44.314370214Z Using pytorch attention
+2025-03-11T21:43:45.235068024Z ComfyUI version: 0.3.26
+2025-03-11T21:43:45.235081555Z ComfyUI frontend version: 1.11.8
+2025-03-11T21:43:45.237396753Z [Prompt Server] web root: /usr/local/lib/python3.10/dist-packages/comfyui_frontend_package/static
+2025-03-11T21:43:45.569691117Z ### Loading: ComfyUI-Manager (V3.30.3)
+2025-03-11T21:43:45.569859413Z [ComfyUI-Manager] network_mode: public
+2025-03-11T21:43:45.601387027Z ### ComfyUI Revision: 3238 [9aac21f8] *DETACHED | Released on '2025-03-09'
+2025-03-11T21:43:45.944533630Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+2025-03-11T21:43:45.959736386Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+2025-03-11T21:43:45.972739788Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
+2025-03-11T21:43:45.991776726Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+2025-03-11T21:43:46.015198063Z [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+2025-03-11T21:43:46.291462654Z [34m[ComfyUI-Easy-Use] server: [0mv1.2.7 [92mLoaded[0m
+2025-03-11T21:43:46.291482975Z [34m[ComfyUI-Easy-Use] web root: [0m/comfyui/custom_nodes/ComfyUI-Easy-Use/web_version/v2 [92mLoaded[0m
+2025-03-11T21:43:46.313097189Z [92m[rgthree-comfy] Loaded 42 extraordinary nodes. 🎉[00m
+2025-03-11T21:43:46.362073305Z 2025-03-11 21:43:46.360 | INFO     | ComfyUI-SAMURAI--SAM2-:<module>:13 - Running on device: NVIDIA RTX 2000 Ada Generation
+2025-03-11T21:43:46.362322742Z 2025-03-11 21:43:46.362 | INFO     | ComfyUI-SAMURAI--SAM2-:<module>:14 - Available memory: 16075.88 MB
+2025-03-11T21:43:46.365489985Z Failed to auto update `Quality of Life Suit`
+2025-03-11T21:43:46.373443308Z [33mQualityOfLifeSuit_Omar92_DIR:[0m /comfyui/custom_nodes/ComfyUI-QualityOfLifeSuit_Omar92
+2025-03-11T21:43:46.378666232Z ### Loading: ComfyUI-Impact-Pack (V8.4.1)
+2025-03-11T21:43:46.458173163Z [Impact Pack] Wildcards loading done.
+2025-03-11T21:43:46.462058847Z Traceback (most recent call last):
+2025-03-11T21:43:46.462069427Z   File "/comfyui/nodes.py", line 2147, in load_custom_node
+2025-03-11T21:43:46.462073988Z     module_spec.loader.exec_module(module)
+2025-03-11T21:43:46.462093668Z   File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+2025-03-11T21:43:46.462098178Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2025-03-11T21:43:46.462102128Z   File "/comfyui/custom_nodes/ComfyUI_UltimateSDUpscale/__init__.py", line 32, in <module>
+2025-03-11T21:43:46.462107699Z     from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
+2025-03-11T21:43:46.462111559Z   File "/comfyui/custom_nodes/ComfyUI_UltimateSDUpscale/nodes.py", line 6, in <module>
+2025-03-11T21:43:46.462115419Z     from usdu_patch import usdu
+2025-03-11T21:43:46.462119289Z   File "/comfyui/custom_nodes/ComfyUI_UltimateSDUpscale/usdu_patch.py", line 2, in <module>
+2025-03-11T21:43:46.462123039Z     from repositories import ultimate_upscale as usdu
+2025-03-11T21:43:46.462126859Z   File "/comfyui/custom_nodes/ComfyUI_UltimateSDUpscale/repositories/__init__.py", line 14, in <module>
+2025-03-11T21:43:46.462130729Z     spec.loader.exec_module(ultimate_upscale)
+2025-03-11T21:43:46.462134569Z   File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+2025-03-11T21:43:46.462138360Z   File "<frozen importlib._bootstrap_external>", line 1016, in get_code
+2025-03-11T21:43:46.462142120Z   File "<frozen importlib._bootstrap_external>", line 1073, in get_data
+2025-03-11T21:43:46.462145990Z FileNotFoundError: [Errno 2] No such file or directory: '/comfyui/custom_nodes/ComfyUI_UltimateSDUpscale/repositories/ultimate_sd_upscale/scripts/ultimate-upscale.py'
+2025-03-11T21:43:46.462329675Z Cannot import /comfyui/custom_nodes/ComfyUI_UltimateSDUpscale module for custom nodes: [Errno 2] No such file or directory: '/comfyui/custom_nodes/ComfyUI_UltimateSDUpscale/repositories/ultimate_sd_upscale/scripts/ultimate-upscale.py'
+2025-03-11T21:43:46.503350068Z Total VRAM 16076 MB, total RAM 257573 MB
+2025-03-11T21:43:46.503363028Z pytorch version: 2.6.0+cu124
+2025-03-11T21:43:46.503601585Z Set vram state to: NORMAL_VRAM
+2025-03-11T21:43:46.503618456Z Device: cuda:0 NVIDIA RTX 2000 Ada Generation : cudaMallocAsync
+2025-03-11T21:43:50.173966212Z FETCH ComfyRegistry Data: 5/57
+2025-03-11T21:43:54.793823414Z FETCH ComfyRegistry Data: 10/57
+2025-03-11T21:43:59.294259503Z FETCH ComfyRegistry Data: 15/57
+2025-03-11T21:44:03.498697642Z FETCH ComfyRegistry Data: 20/57
+2025-03-11T21:44:07.949861697Z FETCH ComfyRegistry Data: 25/57
+2025-03-11T21:44:12.289931423Z FETCH ComfyRegistry Data: 30/57
+2025-03-11T21:44:16.745990941Z FETCH ComfyRegistry Data: 35/57
+2025-03-11T21:44:21.086117900Z FETCH ComfyRegistry Data: 40/57
+2025-03-11T21:44:25.608408969Z FETCH ComfyRegistry Data: 45/57
+2025-03-11T21:44:30.115203996Z FETCH ComfyRegistry Data: 50/57
+2025-03-11T21:44:30.410012091Z generated new fontManager
+2025-03-11T21:44:30.416839861Z --------------
+2025-03-11T21:44:30.416856712Z [91m ### Mixlab Nodes: [93mLoaded
+2025-03-11T21:44:30.424365432Z json_repair## OK
+2025-03-11T21:44:30.425619759Z ChatGPT.available True
+2025-03-11T21:44:30.426510705Z edit_mask.available True
+2025-03-11T21:44:30.637437741Z ## clip_interrogator_model not found: /comfyui/models/clip_interrogator/Salesforce/blip-image-captioning-base, pls download from https://huggingface.co/Salesforce/blip-image-captioning-base
+2025-03-11T21:44:30.637538784Z ClipInterrogator.available True
+2025-03-11T21:44:30.665036100Z ## text_generator_model not found: /comfyui/models/prompt_generator/text2image-prompt-generator, pls download from https://huggingface.co/succinctly/text2image-prompt-generator/tree/main
+2025-03-11T21:44:30.665052460Z ## zh_en_model not found: /comfyui/models/prompt_generator/opus-mt-zh-en, pls download from https://huggingface.co/Helsinki-NLP/opus-mt-zh-en/tree/main
+2025-03-11T21:44:30.665358060Z PromptGenerate.available True
+2025-03-11T21:44:30.665390381Z ChinesePrompt.available True
+2025-03-11T21:44:30.665432592Z RembgNode_.available True
+2025-03-11T21:44:30.669549312Z ffmpeg could not be found. Using ffmpeg from imageio-ffmpeg.
+2025-03-11T21:44:31.170053480Z TripoSR.available
+2025-03-11T21:44:31.170836963Z MiniCPMNode.available
+2025-03-11T21:44:31.182825764Z Scenedetect.available
+2025-03-11T21:44:31.243341730Z FishSpeech.available
+2025-03-11T21:44:31.248166711Z SenseVoice.available
+2025-03-11T21:44:31.264383876Z Whisper.available False
+2025-03-11T21:44:31.266086396Z Installing fal-client...
+2025-03-11T21:44:33.765500674Z FalVideo.available
+2025-03-11T21:44:33.765538205Z [93m -------------- [0m
+2025-03-11T21:44:33.993616004Z ------------------------------------------
+2025-03-11T21:44:33.993641474Z [34mComfyroll Studio v1.76 : [92m 175 Nodes Loaded[0m
+2025-03-11T21:44:33.993647484Z ------------------------------------------
+2025-03-11T21:44:33.993652265Z ** For changes, please see patch notes at https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes/blob/main/Patch_Notes.md
+2025-03-11T21:44:33.993668335Z ** For help, please see the wiki at https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes/wiki
+2025-03-11T21:44:33.993673685Z ------------------------------------------
+2025-03-11T21:44:34.096969774Z [34mWAS Node Suite: [0mCreated default conf file at `/comfyui/custom_nodes/was-node-suite-comfyui/was_suite_config.json`.[0m
+2025-03-11T21:44:34.574259881Z FETCH ComfyRegistry Data: 55/57
+2025-03-11T21:44:34.651850947Z [34mWAS Node Suite: [0mOpenCV Python FFMPEG support is enabled[0m
+2025-03-11T21:44:34.651909729Z [34mWAS Node Suite [93mWarning: [0m`ffmpeg_bin_path` is not set in `/comfyui/custom_nodes/was-node-suite-comfyui/was_suite_config.json` config file. Will attempt to use system ffmpeg binaries if available.[0m
+2025-03-11T21:44:35.214845677Z [34mWAS Node Suite: [0mFinished.[0m [32mLoaded[0m [0m220[0m [32mnodes successfully.[0m
+2025-03-11T21:44:35.214861247Z 	[3m[93m"Don't be afraid to give up the good to go for the great."[0m[3m - John D. Rockefeller[0m
+2025-03-11T21:44:35.231342081Z Adding /comfyui/custom_nodes to sys.path
+2025-03-11T21:44:35.249322328Z Could not find efficiency nodes
+2025-03-11T21:44:35.253319715Z Could not find ControlNetPreprocessors nodes
+2025-03-11T21:44:35.253952154Z Could not find AdvancedControlNet nodes
+2025-03-11T21:44:35.256349164Z Could not find AnimateDiff nodes
+2025-03-11T21:44:35.257313663Z Could not find IPAdapter nodes
+2025-03-11T21:44:35.264266166Z Could not find VideoHelperSuite nodes
+2025-03-11T21:44:35.265712529Z ### Loading: ComfyUI-Impact-Pack (V8.4.1)
+2025-03-11T21:44:35.266313166Z Loaded ImpactPack nodes from /comfyui/custom_nodes/ComfyUI-Impact-Pack
+2025-03-11T21:44:35.266915234Z [Impact Pack] Wildcards loading done.
+2025-03-11T21:44:35.287534759Z Import times for custom nodes:
+2025-03-11T21:44:35.287552190Z    0.0 seconds: /comfyui/custom_nodes/websocket_image_save.py
+2025-03-11T21:44:35.287608401Z    0.0 seconds: /comfyui/custom_nodes/cg-use-everywhere
+2025-03-11T21:44:35.287649982Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-BRIA_AI-RMBG
+2025-03-11T21:44:35.287684843Z    0.0 seconds (IMPORT FAILED): /comfyui/custom_nodes/ComfyUI_UltimateSDUpscale
+2025-03-11T21:44:35.287723875Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-RMBG
+2025-03-11T21:44:35.287758916Z    0.0 seconds: /comfyui/custom_nodes/ComfyMath
+2025-03-11T21:44:35.287794597Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-QualityOfLifeSuit_Omar92
+2025-03-11T21:44:35.287827278Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-Custom-Scripts
+2025-03-11T21:44:35.287864159Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-SAMURAI--SAM2-
+2025-03-11T21:44:35.287895360Z    0.0 seconds: /comfyui/custom_nodes/rgthree-comfy
+2025-03-11T21:44:35.287930241Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI_essentials
+2025-03-11T21:44:35.287962302Z    0.0 seconds: /comfyui/custom_nodes/x-flux-comfyui
+2025-03-11T21:44:35.287999643Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-segment-anything-2
+2025-03-11T21:44:35.288033704Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-KJNodes
+2025-03-11T21:44:35.288064854Z    0.0 seconds: /comfyui/custom_nodes/comfyui-art-venture
+2025-03-11T21:44:35.288096446Z    0.1 seconds: /comfyui/custom_nodes/ComfyUI-Manager
+2025-03-11T21:44:35.288131847Z    0.1 seconds: /comfyui/custom_nodes/ComfyUI-Impact-Pack
+2025-03-11T21:44:35.288163867Z    0.2 seconds: /comfyui/custom_nodes/ComfyUI_Comfyroll_CustomNodes
+2025-03-11T21:44:35.288196818Z    0.7 seconds: /comfyui/custom_nodes/ComfyUI-Easy-Use
+2025-03-11T21:44:35.288232849Z    1.2 seconds: /comfyui/custom_nodes/was-node-suite-comfyui
+2025-03-11T21:44:35.288271260Z   47.2 seconds: /comfyui/custom_nodes/comfyui-mixlab-nodes
+2025-03-11T21:44:35.301688154Z Starting server
+2025-03-11T21:44:35.301901610Z To see the GUI go to: http://0.0.0.0:8188
+2025-03-11T21:44:35.302043224Z To see the GUI go to: http://[::]:8188
+2025-03-11T21:44:36.671858415Z FETCH ComfyRegistry Data [DONE]
+2025-03-11T21:44:36.733603196Z [ComfyUI-Manager] default cache updated: https://api.comfy.org/nodes
+2025-03-11T21:44:36.745977409Z nightly_channel:
+2025-03-11T21:44:36.745988670Z https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/remote
+2025-03-11T21:44:36.949566859Z FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json [DONE]
+2025-03-11T21:44:36.995442005Z [ComfyUI-Manager] All startup tasks have been completed.

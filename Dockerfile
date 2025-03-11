@@ -192,6 +192,14 @@ RUN cd /comfyui/custom_nodes && \
     cd ComfyUI-segment-anything-2 && \
     git checkout 059815ecc55b17ae9b47d15ed9b39b243d73b25f && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+#Comfyui_controlnet_aux
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/Fannovel16/comfyui_controlnet_aux.git && \
+    cd comfyui_controlnet_aux && \
+    git checkout 5a049bde9cc117dafc327cded156459289097ea1 && \
+    pip install --no-cache-dir -r requirements.txt;
+    
     
     
 # Start container
