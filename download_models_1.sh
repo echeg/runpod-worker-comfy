@@ -6,8 +6,9 @@ MODEL_DIR="/runpod-volume/models"
 # Функция для скачивания файла, если его нет
 download_if_not_exists() {
     local dir_path=$1
-    local file_path=$2
+    local filename=$2
     local url=$3
+    local file_path="$dir_path/$filename"
 
     # Создание директории, если ее нет
     mkdir -p "$dir_path"
@@ -20,23 +21,10 @@ download_if_not_exists() {
     fi
 }
 
-# Пути к моделям
-CLIP_INTERROGATOR_DIR="$MODEL_DIR/clip_interrogator/Salesforce/blip-image-captioning-base"
-TEXT_GENERATOR_DIR="$MODEL_DIR/prompt_generator/text2image-prompt-generator"
-ZH_EN_DIR="$MODEL_DIR/prompt_generator/opus-mt-zh-en"
-
-CLIP_INTERROGATOR_MODEL="$CLIP_INTERROGATOR_DIR/pytorch_model.bin"
-TEXT_GENERATOR_MODEL="$TEXT_GENERATOR_DIR/pytorch_model.bin"
-ZH_EN_MODEL="$ZH_EN_DIR/pytorch_model.bin"
-
-# URL моделей
-CLIP_INTERROGATOR_URL="https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/main/pytorch_model.bin"
-TEXT_GENERATOR_URL="https://huggingface.co/succinctly/text2image-prompt-generator/resolve/main/pytorch_model.bin"
-ZH_EN_URL="https://huggingface.co/Helsinki-NLP/opus-mt-zh-en/resolve/main/pytorch_model.bin"
-
 # Скачивание моделей, если они отсутствуют
-download_if_not_exists "$CLIP_INTERROGATOR_DIR" "$CLIP_INTERROGATOR_MODEL" "$CLIP_INTERROGATOR_URL"
-download_if_not_exists "$TEXT_GENERATOR_DIR" "$TEXT_GENERATOR_MODEL" "$TEXT_GENERATOR_URL"
-download_if_not_exists "$ZH_EN_DIR" "$ZH_EN_MODEL" "$ZH_EN_URL"
+download_if_not_exists "$MODEL_DIR/clip_interrogator/Salesforce/blip-image-captioning-base" "pytorch_model.bin" "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/main/pytorch_model.bin"
+download_if_not_exists "$MODEL_DIR/prompt_generator/text2image-prompt-generator" "pytorch_model.bin" "https://huggingface.co/succinctly/text2image-prompt-generator/resolve/main/pytorch_model.bin"
+download_if_not_exists "$MODEL_DIR/prompt_generator/opus-mt-zh-en" "pytorch_model.bin" "https://huggingface.co/Helsinki-NLP/opus-mt-zh-en/resolve/main/pytorch_model.bin"
+download_if_not_exists "$MODEL_DIR/checkpoints" "v1-5-pruned-emaonly-fp16.safetensors" "https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly-fp16.safetensors?download=true"
 
 echo "Все модели скачаны или уже были установлены!"
