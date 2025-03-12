@@ -11,3 +11,17 @@ runpod_worker_comfy:
   vae: models/vae/
   unet: models/unet/
   style_models: models/style_models/
+  diffusion_models: models/diffusion_models/
+  gligen: models/gligen/
+  hypernetworks: models/hypernetworks/
+  mmdets: models/mmdets/
+  mmdets_bbox: models/mmdets_bbox/
+  mmdets_segm: models/mmdets_segm/
+  onnx: models/onnx/
+  sams: models/sams/
+  t5: models/t5/
+  llm: models/llm/
+  rmbg: models/rmbg/
+  inpaint: models/inpaint/
+  prompt_generator: models/prompt_generator/
+  clip_interrogator: models/clip_interrogator/
