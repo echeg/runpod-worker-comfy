@@ -209,6 +209,26 @@ RUN cd /comfyui/custom_nodes && \
 
 RUN pip install --no-cache-dir google-cloud-storage huggingface_hub boto3
     
-    
+# Comfyui-ergouzi-Nodes
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/11dogzi/Comfyui-ergouzi-Nodes.git && \
+    cd Comfyui-ergouzi-Nodes && \
+    git checkout 0d6ac29773fa03e439dd9deb282453b739403427 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-Florence2
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/kijai/ComfyUI-Florence2.git && \
+    cd ComfyUI-Florence2 && \
+    git checkout dffd12506d50f0540b8a7f4b36a05d4fb5fed2de && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-Fluxtapoz
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/logtd/ComfyUI-Fluxtapoz.git && \
+    cd ComfyUI-Fluxtapoz && \
+    git checkout 17c71bea20e932945e9c1be0586cfd4b7e51cbf6 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
 # Start container
 CMD ["/start.sh"]
