@@ -193,13 +193,21 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 059815ecc55b17ae9b47d15ed9b39b243d73b25f && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-#Comfyui_controlnet_aux
+# Comfyui_controlnet_aux
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/Fannovel16/comfyui_controlnet_aux.git && \
     cd comfyui_controlnet_aux && \
     git checkout 5a049bde9cc117dafc327cded156459289097ea1 && \
     pip install --no-cache-dir -r requirements.txt;
     
+# Bedrock - Claude Multimodal
+#RUN cd /comfyui/custom_nodes && \
+#    git clone https://github.com/aws-samples/comfyui-llm-node-for-amazon-bedrock.git && \
+#    cd comfyui-llm-node-for-amazon-bedrock && \
+#    git checkout 30fd153e98b40b2df628e0141914cae245d73ff3 && \
+#    pip install --no-cache-dir -r requirements.txt;
+
+RUN pip install --no-cache-dir google-cloud-storage huggingface_hub boto3
     
     
 # Start container
