@@ -27,4 +27,5 @@ download_if_not_exists "$MODEL_DIR/prompt_generator/text2image-prompt-generator"
 download_if_not_exists "$MODEL_DIR/prompt_generator/opus-mt-zh-en" "pytorch_model.bin" "https://huggingface.co/Helsinki-NLP/opus-mt-zh-en/resolve/main/pytorch_model.bin"
 download_if_not_exists "$MODEL_DIR/checkpoints" "v1-5-pruned-emaonly-fp16.safetensors" "https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly-fp16.safetensors?download=true"
 
+
 echo "Все модели скачаны или уже были установлены!"

@@ -45,7 +45,7 @@ RUN pip install --no-cache-dir paddlepaddle paddleocr
 WORKDIR /
 
 # Add scripts
-ADD src/start.sh src/restore_snapshot.sh src/rp_handler.py test_input.json ./
+ADD src/start.sh src/restore_snapshot.sh src/rp_handler.py test_input.json src/model_manager.py src/download_default_models_for_nodes.sh ./
 RUN chmod +x /start.sh /restore_snapshot.sh
 
 # Optionally copy the snapshot file
@@ -153,7 +153,7 @@ RUN cd /comfyui/custom_nodes && \
 
 # ComfyUI_UltimateSDUpscale
 RUN cd /comfyui/custom_nodes && \
-    git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git && \
+    git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git --recursive && \
     cd ComfyUI_UltimateSDUpscale && \
     git checkout ff3fdfeee03de46d4462211cffd165d27155e858 && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
