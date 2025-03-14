@@ -1,6 +1,8 @@
 import os
 import sys
 import argparse
+import tempfile
+from huggingface_hub import hf_hub_download
 
 class ModelManager:
     def __init__(self):
@@ -246,6 +248,33 @@ class ModelManager:
     # ================================
     # Методы скачивания с облака
     # ================================
+    def _should_skip_file(self, file_path, file_size=None, display_path=None):
+        """
+        Проверяет, нужно ли пропустить файл при скачивании.
+        
+        Args:
+            file_path (str): Относительный путь к файлу
+            file_size (int, optional): Размер файла в байтах
+            display_path (str, optional): Путь для отображения в сообщениях
+            
+        Returns:
+            bool: True если файл нужно пропустить, False если нужно скачать
+        """
+        MIN_FILE_SIZE = 100 * 1024  # 100 КБ в байтах
+        display_path = display_path or file_path
+        
+        # Пропускаем файлы и директории, начинающиеся с точки
+        if file_path.startswith('.') or any(part.startswith('.') for part in file_path.split('/')):
+            print(f"Пропускаем {display_path} - файл или директория начинается с точки")
+            return True
+            
+        # Пропускаем файлы меньше 100 КБ
+        if file_size is not None and file_size < MIN_FILE_SIZE:
+            print(f"Пропускаем {display_path} - файл меньше 100 КБ ({file_size / 1024:.2f} КБ)")
+            return True
+            
+        return False
+
     def download_from_google(self):
         try:
             from google.cloud import storage
@@ -271,8 +300,13 @@ class ModelManager:
         for blob in blobs:
             if not blob.name.startswith(self.args.gcs_prefix):
                 continue
+                
             # Вычисляем относительный путь
             rel_path = blob.name[len(self.args.gcs_prefix):]
+            
+            if self._should_skip_file(rel_path, blob.size, blob.name):
+                continue
+                
             local_path = os.path.join(self.args.local_folder, rel_path)
             if os.path.exists(local_path) and os.path.getsize(local_path) == blob.size and not self.args.overwrite:
                 print(f"Пропускаем {local_path} - файл уже существует с тем же размером")
@@ -307,22 +341,27 @@ class ModelManager:
         api = HfApi()
         print(f"Получение списка файлов в репозитории {self.args.hf_repo_id}...")
         try:
+            # Получаем список файлов в репозитории
             repo_files = api.list_repo_files(repo_id=self.args.hf_repo_id, token=token)
-            files_info = {}
-            for file_path in repo_files:
-                try:
-                    file_info = api.get_info_from_repo(
-                        repo_id=self.args.hf_repo_id,
-                        filename=file_path,
-                        token=token
-                    )
-                    if hasattr(file_info, 'size'):
-                        files_info[file_path] = file_info.size
-                    else:
-                        files_info[file_path] = None
-                except Exception as e:
-                    print(f"Не удалось получить информацию о файле {file_path}: {e}")
-                    files_info[file_path] = None
+            
+            # Получаем информацию о репозитории, включая метаданные файлов
+            try:
+                repo_info = api.model_info(
+                    repo_id=self.args.hf_repo_id,
+                    token=token,
+                    files_metadata=True  # Запрашиваем метаданные файлов
+                )
+                files_info = {}
+                # Если есть siblings (информация о файлах), используем их для получения размеров
+                if hasattr(repo_info, 'siblings') and repo_info.siblings:
+                    for file_info in repo_info.siblings:
+                        if hasattr(file_info, 'rfilename') and hasattr(file_info, 'size'):
+                            files_info[file_info.rfilename] = file_info.size
+            except Exception as e:
+                print(f"Не удалось получить метаданные файлов: {e}")
+                # Если не удалось получить метаданные, создаем пустой словарь
+                files_info = {}
+                
             print(f"Найдено {len(repo_files)} файлов в репозитории")
         except Exception as e:
             print(f"Ошибка при получении списка файлов: {e}")
@@ -331,8 +370,12 @@ class ModelManager:
         
         import shutil
         for file_path in repo_files:
-            local_path = os.path.join(self.args.local_folder, file_path)
+            # Проверяем размер из метаданных
             expected_size = files_info.get(file_path)
+            if self._should_skip_file(file_path, expected_size):
+                continue
+                
+            local_path = os.path.join(self.args.local_folder, file_path)
             if os.path.exists(local_path) and expected_size is not None and os.path.getsize(local_path) == expected_size and not self.args.overwrite:
                 print(f"Пропускаем {local_path} - файл уже существует с тем же размером")
                 self.skipped_count += 1
@@ -340,13 +383,24 @@ class ModelManager:
             os.makedirs(os.path.dirname(local_path), exist_ok=True)
             print(f"Скачиваем {self.args.hf_repo_id}/{file_path} → {local_path}")
             try:
-                downloaded_path = hf_hub_download(
-                    repo_id=self.args.hf_repo_id,
-                    filename=file_path,
-                    token=token,
-                    repo_type="model"
-                )
-                shutil.copy2(downloaded_path, local_path)
+                # Используем временную директорию:
+                with tempfile.TemporaryDirectory() as tmp_cache_dir:
+                    downloaded_path = hf_hub_download(
+                        repo_id=self.args.hf_repo_id,
+                        filename=file_path,
+                        token=token,
+                        repo_type="model",
+                        cache_dir=tmp_cache_dir  # скачиваем во временную директорию
+                    )
+                    
+                    # Проверяем размер скачанного файла, если размер не был известен из метаданных
+                    if expected_size is None:
+                        file_size = os.path.getsize(downloaded_path)
+                        if self._should_skip_file(file_path, file_size):
+                            continue
+                        
+                    shutil.copy2(downloaded_path, local_path)
+                # После выхода из with tmp_cache_dir удаляется, и файлы во временной директории не остаются
                 self.uploaded_count += 1
                 print(f"Скачан {local_path}")
             except Exception as e:
@@ -388,7 +442,12 @@ class ModelManager:
         for key, size in s3_files.items():
             if not key.startswith(self.args.s3_prefix):
                 continue
+                
             rel_path = key[len(self.args.s3_prefix):]
+            
+            if self._should_skip_file(rel_path, size, key):
+                continue
+                
             local_path = os.path.join(self.args.local_folder, rel_path)
             if os.path.exists(local_path) and os.path.getsize(local_path) == size and not self.args.overwrite:
                 print(f"Пропускаем {local_path} - файл уже существует с тем же размером")

@@ -1,19 +1,11 @@
 
 {
-    DepthAnythingV2Preprocessor
-    AIO_Preprocessor
-    Bedrock - Claude Multimodal
-    UltimateSDUpscaleCustomSample
-    ImpactSwitch
-    Note _O
+
 
     "comfyui": "55add502206ed5511a04215db4ab8f1cfa3d99ae",
     "git_custom_nodes": {
 
-        "https://github.com/yolain/ComfyUI-Easy-Use.git": {
-            "hash": "65937a75ebdbe5c35afe6474dfe12673aca5f0ac",
-            "disabled": false
-        },
+
         "https://github.com/11dogzi/Comfyui-ergouzi-Nodes": {
             "hash": "0d6ac29773fa03e439dd9deb282453b739403427",
             "disabled": false
@@ -28,10 +20,6 @@
         },
         "https://github.com/city96/ComfyUI-GGUF": {
             "hash": "5875c52f59baca3a9372d68c43a3775e21846fe0",
-            "disabled": false
-        },
-        "https://github.com/ltdrdata/ComfyUI-Impact-Pack": {
-            "hash": "d8738eee2f6c8c9a17ca42ab71f47ce35ccca3e7",
             "disabled": false
         },
         "https://github.com/lrzjason/Comfyui-In-Context-Lora-Utils.git": {
@@ -65,18 +53,6 @@
         },
         "https://github.com/NimaNzrii/comfyui-photoshop": {
             "hash": "732c8b4dd1c91765763dbc68dbecb8028f8a95ee",
-            "disabled": false
-        },
-        "https://github.com/omar92/ComfyUI-QualityOfLifeSuit_Omar92": {
-            "hash": "f09d10dea0afbd3984a284acf8f0913a634e36ec",
-            "disabled": false
-        },
-        "https://github.com/takemetosiberia/ComfyUI-SAMURAI--SAM2-": {
-            "hash": "42b13f2e4f859f9da058efb407d3aeede8a4f6ce",
-            "disabled": false
-        },
-        "https://github.com/kijai/ComfyUI-segment-anything-2": {
-            "hash": "059815ecc55b17ae9b47d15ed9b39b243d73b25f",
             "disabled": false
         },
         "https://github.com/un-seen/comfyui-tensorops": {
@@ -115,10 +91,7 @@
             "hash": "6dd3f3566ce0925b71e9cdb54243119685ccbc10",
             "disabled": false
         },
-        "https://github.com/ssitu/ComfyUI_UltimateSDUpscale": {
-            "hash": "ff3fdfeee03de46d4462211cffd165d27155e858",
-            "disabled": false
-        },
+
         "https://github.com/jags111/efficiency-nodes-comfyui": {
             "hash": "3ead4afd120833f3bffdefeca0d6545df8051798",
             "disabled": false
