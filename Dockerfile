@@ -303,5 +303,47 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 637bc18f8e18cc662a8411efbc7013adc7845ae7 && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# ComfyUI_JPS-Nodes
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git && \
+    cd ComfyUI_JPS-Nodes && \
+    git checkout 0e2a9aca02b17dde91577bfe4b65861df622dcaf && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI_LayerStyle
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/chflame163/ComfyUI_LayerStyle.git && \
+    cd ComfyUI_LayerStyle && \
+    git checkout 84d357ad826731a931c305bf11a1101b8ac2976c && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI_LayerStyle_Advance
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git && \
+    cd ComfyUI_LayerStyle_Advance && \
+    git checkout 2b535689836774572bdacfb67c2fbdc6816a8c47 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# comfyui-tensorops
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/un-seen/comfyui-tensorops.git && \
+    cd comfyui-tensorops && \
+    git checkout d34488e3079ecd10db2fe867c3a7af568115faed && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI_AdvancedRefluxControl
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/kaibioinfo/ComfyUI_AdvancedRefluxControl.git && \
+    cd ComfyUI_AdvancedRefluxControl && \
+    git checkout 0a87efa252ae5e8f4af1225b0e19c867f908376a && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# Comfyui_JC2
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/TTPlanetPig/Comfyui_JC2.git && \
+    cd Comfyui_JC2 && \
+    git checkout 712b89398d0a7b005235c8d36f333e86a0beea1b && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
 # Start container
 CMD ["/start.sh"]
