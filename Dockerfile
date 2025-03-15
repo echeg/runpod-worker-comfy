@@ -254,5 +254,26 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 2abf837822d761110ac383d9a1cdffcc7ebfab36 && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# comfyui-inpaint-nodes
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/Acly/comfyui-inpaint-nodes.git && \
+    cd comfyui-inpaint-nodes && \
+    git checkout 20092c37b9dfc481ca44e8577a9d4a9d426c0e56 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# comfyui-lama-remover
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/Layer-norm/comfyui-lama-remover.git && \
+    cd comfyui-lama-remover && \
+    git checkout 070c0226dfda85e29f2484a9ba321cc02ef8a6b0 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-Logic
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/theUpsider/ComfyUI-Logic.git && \
+    cd ComfyUI-Logic && \
+    git checkout 42d4f3df45fb7f0dd6e2201a14c07d4dd09f235d && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
 # Start container
 CMD ["/start.sh"]
