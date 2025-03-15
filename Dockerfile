@@ -275,5 +275,33 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 42d4f3df45fb7f0dd6e2201a14c07d4dd09f235d && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# Comfyui_Object_Migration
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/TTPlanetPig/Comfyui_Object_Migration.git && \
+    cd Comfyui_Object_Migration && \
+    git checkout 4dca67f77a9feb52d088916fe6a1f54920cd7d65 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# Comfyui_TTP_Toolset
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/TTPlanetPig/Comfyui_TTP_Toolset.git && \
+    cd Comfyui_TTP_Toolset && \
+    git checkout 6dd3f3566ce0925b71e9cdb54243119685ccbc10 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# efficiency-nodes-comfyui
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/jags111/efficiency-nodes-comfyui.git && \
+    cd efficiency-nodes-comfyui && \
+    git checkout 3ead4afd120833f3bffdefeca0d6545df8051798 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# mikey_nodes
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/bash-j/mikey_nodes.git && \
+    cd mikey_nodes && \
+    git checkout 637bc18f8e18cc662a8411efbc7013adc7845ae7 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
 # Start container
 CMD ["/start.sh"]
