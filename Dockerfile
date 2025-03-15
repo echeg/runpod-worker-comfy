@@ -209,6 +209,9 @@ RUN cd /comfyui/custom_nodes && \
 
 RUN pip install --no-cache-dir google-cloud-storage huggingface_hub boto3
     
+# Create web/extensions directory
+RUN mkdir -p /comfyui/web/extensions
+
 # Comfyui-ergouzi-Nodes
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/11dogzi/Comfyui-ergouzi-Nodes.git && \
@@ -228,6 +231,27 @@ RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/logtd/ComfyUI-Fluxtapoz.git && \
     cd ComfyUI-Fluxtapoz && \
     git checkout 17c71bea20e932945e9c1be0586cfd4b7e51cbf6 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-GGUF
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/city96/ComfyUI-GGUF.git && \
+    cd ComfyUI-GGUF && \
+    git checkout 5875c52f59baca3a9372d68c43a3775e21846fe0 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# Comfyui-In-Context-Lora-Utils
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/lrzjason/Comfyui-In-Context-Lora-Utils.git && \
+    cd Comfyui-In-Context-Lora-Utils && \
+    git checkout 6ef772d589928a380a139c6cd2cfc49b83c8e441 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# ComfyUI-Inpaint-CropAndStitch
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch.git && \
+    cd ComfyUI-Inpaint-CropAndStitch && \
+    git checkout 2abf837822d761110ac383d9a1cdffcc7ebfab36 && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
 # Start container
