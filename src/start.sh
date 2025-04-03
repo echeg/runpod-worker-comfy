@@ -9,11 +9,6 @@ export LD_PRELOAD="${TCMALLOC}"
 #                          Function Definitions                                #
 # ---------------------------------------------------------------------------- #
 
-# Start nginx service
-start_nginx() {
-    echo "Starting Nginx service..."
-    service nginx start
-}
 
 # Execute script if exists
 execute_script() {
@@ -89,12 +84,13 @@ start_jupyter() {
 #                               Main Program                                   #
 # ---------------------------------------------------------------------------- #
 
-setup_ssh
-start_jupyter
-export_env_vars
 
 # Serve the API and don't shutdown the container
 if [ "$SERVE_API_LOCALLY" == "true" ] || [ "$SERVER_INPOD" == "true" ]; then
+    setup_ssh
+    start_jupyter
+    export_env_vars
+
     echo "runpod-worker-comfy: Starting ComfyUI Locally"
     python3 /comfyui/main.py --disable-auto-launch --disable-metadata --listen &
 
