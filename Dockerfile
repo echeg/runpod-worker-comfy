@@ -345,5 +345,14 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 712b89398d0a7b005235c8d36f333e86a0beea1b && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# Создание необходимых директорий
+RUN mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline && \
+mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators
+
+# Загрузка моделей
+RUN wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline/MTEED.pth \
+https://huggingface.co/TheMistoAI/MistoLine/resolve/main/Anyline/MTEED.pth && \
+wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/erika.pth \
+https://huggingface.co/lllyasviel/Annotators/resolve/main/erika.pth
 # Start container
 CMD ["/start.sh"]
