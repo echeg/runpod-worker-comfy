@@ -45,14 +45,11 @@ RUN pip install --no-cache-dir paddlepaddle paddleocr
 WORKDIR /
 
 # Add scripts
-ADD src/start.sh src/restore_snapshot.sh src/rp_handler.py test_input.json src/model_manager.py src/download_default_models_for_nodes.sh ./
-RUN chmod +x /start.sh /restore_snapshot.sh
+ADD src/start.sh src/rp_handler.py test_input.json src/model_manager.py src/download_default_models_for_nodes.sh ./
+RUN chmod +x /start.sh
 
-# Optionally copy the snapshot file
-ADD *snapshot*.json /
-
-# Restore the snapshot to install custom nodes
-RUN /restore_snapshot.sh
+# Install onnxruntime-gpu for DWPose acceleration
+RUN pip install --no-cache-dir onnxruntime-gpu
 
 # Установка custom nodes для ComfyUI
 
@@ -197,13 +194,6 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 5a049bde9cc117dafc327cded156459289097ea1 && \
     pip install --no-cache-dir -r requirements.txt;
     
-# Bedrock - Claude Multimodal
-#RUN cd /comfyui/custom_nodes && \
-#    git clone https://github.com/aws-samples/comfyui-llm-node-for-amazon-bedrock.git && \
-#    cd comfyui-llm-node-for-amazon-bedrock && \
-#    git checkout 30fd153e98b40b2df628e0141914cae245d73ff3 && \
-#    pip install --no-cache-dir -r requirements.txt;
-
 RUN pip install --no-cache-dir google-cloud-storage huggingface_hub boto3
     
 # Create web/extensions directory
@@ -342,18 +332,6 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 712b89398d0a7b005235c8d36f333e86a0beea1b && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-# Создание необходимых директорий
-RUN mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline && \
-mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators
-
-# Загрузка моделей
-RUN wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline/MTEED.pth \
-https://huggingface.co/TheMistoAI/MistoLine/resolve/main/Anyline/MTEED.pth && \
-wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/erika.pth \
-https://huggingface.co/lllyasviel/Annotators/resolve/main/erika.pth
-
-# Удаление ComfyUI Manager, так как он не нужен для API
-RUN if [ -d "/comfyui/custom_nodes/ComfyUI-Manager" ]; then rm -rf /comfyui/custom_nodes/ComfyUI-Manager; fi
 
 # Start container
 CMD ["/start.sh"]

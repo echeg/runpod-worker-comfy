@@ -1,0 +1,6 @@
+FROM echeg/comfyui-base-models:0.2.0
+
+COPY models/diffusion_models/flux1-depth-dev.safetensors /comfyui/models/diffusion_models/flux1-depth-dev.safetensors
+RUN test -s /comfyui/models/diffusion_models/flux1-depth-dev.safetensors
+
+CMD ["/start.sh"]
