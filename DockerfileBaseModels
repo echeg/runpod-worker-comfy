@@ -1,4 +1,4 @@
-FROM echeg/comfyui-nodes-layer:0.2.0
+FROM echeg/comfyui-nodes-layer:0.2.4
 
 # --- ДОБАВЛЯЕМ БАЗОВЫЕ МОДЕЛИ ---
 # MTEED.pth

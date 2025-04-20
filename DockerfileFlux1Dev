@@ -1,4 +1,4 @@
-FROM echeg/comfyui-base-models:0.2.0
+FROM echeg/comfyui-base-models:0.2.4
 
 COPY models/diffusion_models/flux1-dev.safetensors /comfyui/models/diffusion_models/flux1-dev.safetensors
 RUN test -s /comfyui/models/diffusion_models/flux1-dev.safetensors
