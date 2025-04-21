@@ -1,0 +1,31 @@
+FROM echeg/comfyui-nodes-layer:0.2.5
+
+# --- ДОБАВЛЯЕМ БАЗОВЫЕ МОДЕЛИ ---
+# MTEED.pth
+RUN mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline && \
+    wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline/MTEED.pth \
+    https://huggingface.co/TheMistoAI/MistoLine/resolve/main/Anyline/MTEED.pth && \
+    test -s /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline/MTEED.pth
+
+# erika.pth
+RUN mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators && \
+    wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/erika.pth \
+    https://huggingface.co/lllyasviel/Annotators/resolve/main/erika.pth && \
+    test -s /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/erika.pth
+
+COPY models/text_encoders/clip_l.safetensors /comfyui/models/text_encoders/clip_l.safetensors
+RUN test -s /comfyui/models/text_encoders/clip_l.safetensors
+
+COPY models/text_encoders/t5xxl_fp16.safetensors /comfyui/models/text_encoders/t5xxl_fp16.safetensors
+RUN test -s /comfyui/models/text_encoders/t5xxl_fp16.safetensors
+
+COPY models/vae/ae.safetensors /comfyui/models/vae/ae.safetensors
+RUN test -s /comfyui/models/vae/ae.safetensors
+
+COPY models/clip_vision/sigclip_vision_patch14_384.safetensors /comfyui/models/clip_vision/sigclip_vision_patch14_384.safetensors
+RUN test -s /comfyui/models/clip_vision/sigclip_vision_patch14_384.safetensors
+
+COPY models/style_models/flux1-redux-dev.safetensors /comfyui/models/style_models/flux1-redux-dev.safetensors
+RUN test -s /comfyui/models/style_models/flux1-redux-dev.safetensors
+
+CMD ["/start.sh"]
