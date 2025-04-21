@@ -3,6 +3,7 @@ import sys
 import subprocess
 import re
 from pathlib import Path
+import concurrent.futures
 
 # --- CONFIG ---
 DOCKERFILES = [
@@ -89,8 +90,23 @@ def main():
             replace_from_version(dockerfile, entry['from_pattern'], new_from)
 
     # Step 2: Build images in order
-    for entry in DOCKERFILES:
+    # Build Nodes, BaseModels, BaseModelsLight последовательно
+    for entry in DOCKERFILES[:3]:
         build_image(str(PROJECT_ROOT / entry['file']), entry['tag'], version)
+
+    # Build Flux images параллельно
+    flux_entries = DOCKERFILES[3:]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        futures = [
+            executor.submit(build_image, str(PROJECT_ROOT / entry['file']), entry['tag'], version)
+            for entry in flux_entries
+        ]
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                future.result()
+            except Exception as exc:
+                print(f"Flux image build generated an exception: {exc}")
+                sys.exit(1)
 
     print("\nAll images built successfully with version:", version)
 

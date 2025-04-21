@@ -1,4 +1,4 @@
-FROM echeg/comfyui-base-models:0.2.4
+FROM echeg/comfyui-base-models:0.2.5
 
 # Удаление ComfyUI Manager, так как он не нужен для API
 RUN if [ -d "/comfyui/custom_nodes/ComfyUI-Manager" ]; then rm -rf /comfyui/custom_nodes/ComfyUI-Manager; fi

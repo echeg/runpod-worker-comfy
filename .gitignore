@@ -38,3 +38,5 @@ ExportedObj/
 **/bin/
 **/obj/
 .vscode/
+key.pem
+cert.pem
