@@ -85,3 +85,10 @@ python build_all.py 0.2.3
 ```
 
 Все образы будут иметь тег `:0.2.3`.
+
+docker build -t echeg/nodes-and-base-models:0.4.1 --platform linux/amd64 -f DockerfileNodes .
+docker push echeg/nodes-and-base-models:0.4.1
+
+powershell -ExecutionPolicy Bypass -File .\push_all.ps1
+
+python build_df2_parallel.py --flux 0.4.1 --shared 0.4.1 --max-workers 4

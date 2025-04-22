@@ -23,11 +23,13 @@ RUN apt-get update && apt-get install -y \
 # Clean up to reduce image size
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-# Install comfy-cli
-RUN pip install --no-cache-dir comfy-cli
-
-# Install ComfyUI
-RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.3.26
+RUN if [ -d /comfyui ]; then mv /comfyui /comfyui_old; fi && \
+    pip install --no-cache-dir comfy-cli && \
+    /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.3.26 && \
+    if [ -d /comfyui_old ]; then \
+        mv /comfyui_old/* /comfyui/ 2>/dev/null || true; \
+        rm -rf /comfyui_old; \
+    fi
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
@@ -51,7 +53,7 @@ RUN chmod +x /start.sh
 # Install onnxruntime-gpu for DWPose acceleration
 RUN pip install --no-cache-dir onnxruntime-gpu
 
-# Установка custom nodes для ComfyUI
+# Install custom nodes for ComfyUI
 
 # cg-use-everywhere
 RUN cd /comfyui/custom_nodes && \
@@ -332,6 +334,40 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 712b89398d0a7b005235c8d36f333e86a0beea1b && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# ComfyUI-Inspyrenet-Rembg
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/john-mnz/ComfyUI-Inspyrenet-Rembg && \
+    cd ComfyUI-Inspyrenet-Rembg && \
+    git checkout 87ac452ef1182e8f35f59b04010158d74dcefd06 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# --- ДОБАВЛЯЕМ БАЗОВЫЕ МОДЕЛИ ---
+# MTEED.pth
+RUN mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline && \
+    wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline/MTEED.pth \
+    https://huggingface.co/TheMistoAI/MistoLine/resolve/main/Anyline/MTEED.pth && \
+    test -s /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/TheMistoAI/MistoLine/Anyline/MTEED.pth
+
+# erika.pth
+RUN mkdir -p /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators && \
+    wget -O /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/erika.pth \
+    https://huggingface.co/lllyasviel/Annotators/resolve/main/erika.pth && \
+    test -s /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/erika.pth
+
+COPY models/text_encoders/clip_l.safetensors /comfyui/models/text_encoders/clip_l.safetensors
+RUN test -s /comfyui/models/text_encoders/clip_l.safetensors
+
+COPY models/text_encoders/t5xxl_fp16.safetensors /comfyui/models/text_encoders/t5xxl_fp16.safetensors
+RUN test -s /comfyui/models/text_encoders/t5xxl_fp16.safetensors
+
+COPY models/vae/ae.safetensors /comfyui/models/vae/ae.safetensors
+RUN test -s /comfyui/models/vae/ae.safetensors
+
+COPY models/clip_vision/sigclip_vision_patch14_384.safetensors /comfyui/models/clip_vision/sigclip_vision_patch14_384.safetensors
+RUN test -s /comfyui/models/clip_vision/sigclip_vision_patch14_384.safetensors
+
+COPY models/style_models/flux1-redux-dev.safetensors /comfyui/models/style_models/flux1-redux-dev.safetensors
+RUN test -s /comfyui/models/style_models/flux1-redux-dev.safetensors
 
 # Start container
 CMD ["/start.sh"]

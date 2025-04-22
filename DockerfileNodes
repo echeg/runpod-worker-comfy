@@ -332,6 +332,13 @@ RUN cd /comfyui/custom_nodes && \
     git checkout 712b89398d0a7b005235c8d36f333e86a0beea1b && \
     if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
+# ComfyUI-Inspyrenet-Rembg
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/john-mnz/ComfyUI-Inspyrenet-Rembg && \
+    cd ComfyUI-Inspyrenet-Rembg && \
+    git checkout 87ac452ef1182e8f35f59b04010158d74dcefd06 && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
 
 # Start container
 CMD ["/start.sh"]
