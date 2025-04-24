@@ -1,4 +1,4 @@
-$tag = "0.4.1"
+$tag = "0.4.3"
 $repo = "echeg"
 $parts = @("dev", "fill", "depth", "canny")
 
