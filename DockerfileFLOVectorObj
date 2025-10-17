@@ -1,0 +1,19 @@
+# Dockerfile для создания образа с FLO_AI_VectorObjects вместо flux1-dev
+FROM echeg/flux1-dev-nodes:0.4.3
+
+# Удаляем старую модель flux1-dev
+RUN rm -f /comfyui/models/diffusion_models/flux1-dev.safetensors
+
+# Копируем новую модель FLO_AI_VectorObjects из локального файла
+COPY models/Models/FLO_AI_VectorObjects_NL_Slow_v2.safetensors /comfyui/models/diffusion_models/FLO_AI_VectorObjects_NL_Slow_v2.safetensors
+
+# Проверяем, что файл успешно скопирован
+RUN test -s /comfyui/models/diffusion_models/FLO_AI_VectorObjects_NL_Slow_v2.safetensors
+
+# Создаем симлинки для модели в каталоги checkpoints и unet
+RUN mkdir -p /comfyui/models/checkpoints /comfyui/models/unet && \
+    ln -s /comfyui/models/diffusion_models/FLO_AI_VectorObjects_NL_Slow_v2.safetensors /comfyui/models/checkpoints/FLO_AI_VectorObjects_NL_Slow_v2.safetensors && \
+    ln -s /comfyui/models/diffusion_models/FLO_AI_VectorObjects_NL_Slow_v2.safetensors /comfyui/models/unet/FLO_AI_VectorObjects_NL_Slow_v2.safetensors
+
+# Команда запуска (наследуется из базового образа)
+CMD ["/start.sh"] 

@@ -26,8 +26,8 @@ class ModelManager:
             help='Перезаписывать существующие файлы'
         )
         parser.add_argument(
-            '--local_folder', type=str, default="/workspace/models",
-            help='Локальная папка с моделями'
+            '--local_folder', type=str, default="./models",
+            help='Локальная папка с моделями (по умолчанию: ./models)'
         )
 
         # Аргументы для Google Cloud Storage
@@ -42,6 +42,10 @@ class ModelManager:
                             help='ID репозитория на Hugging Face (например, username/model-name)')
         parser.add_argument('--hf_token', type=str,
                             help='Токен доступа к Hugging Face')
+        parser.add_argument('--hf_filename', type=str,
+                            help='Конкретный файл для скачивания (например, Models/model.safetensors). Если не указан, скачиваются все файлы')
+        parser.add_argument('--hf_url', type=str,
+                            help='Полный URL файла с HuggingFace (например, https://huggingface.co/user/repo/resolve/main/file.safetensors). Автоматически извлечет repo_id и filename')
 
         # Аргументы для AWS S3
         parser.add_argument('--s3_bucket', type=str, help='Имя бакета S3')
@@ -53,11 +57,46 @@ class ModelManager:
         parser.add_argument('--s3_secret_key', type=str, help='AWS Secret Access Key')
 
         self.args = parser.parse_args()
+        
+        # Если указан URL HuggingFace, парсим его
+        if self.args.hf_url:
+            self._parse_hf_url()
 
         # Счетчики для статистики
         self.uploaded_count = 0
         self.skipped_count = 0
         self.hidden_dirs_skipped = 0
+
+    def _parse_hf_url(self):
+        """Парсит URL HuggingFace и извлекает repo_id и filename"""
+        import re
+        url = self.args.hf_url
+        
+        # Паттерн для URL вида: https://huggingface.co/user/repo/resolve/main/path/to/file
+        pattern = r'https://huggingface\.co/([^/]+/[^/]+)/resolve/[^/]+/(.+)'
+        match = re.match(pattern, url)
+        
+        if not match:
+            print(f"❌ Неверный формат URL HuggingFace: {url}")
+            print("Ожидаемый формат: https://huggingface.co/user/repo/resolve/main/path/to/file")
+            sys.exit(1)
+        
+        repo_id = match.group(1)
+        filename = match.group(2)
+        
+        # Устанавливаем параметры
+        if not self.args.hf_repo_id:
+            self.args.hf_repo_id = repo_id
+            print(f"Извлечен repo_id: {repo_id}")
+        
+        if not self.args.hf_filename:
+            self.args.hf_filename = filename
+            print(f"Извлечен filename: {filename}")
+        
+        # Устанавливаем action на download если не указано
+        if not self.args.action or self.args.action != 'download':
+            self.args.action = 'download'
+            print("Автоматически установлено action: download")
 
     def walk_files(self, local_folder):
         """
@@ -338,6 +377,13 @@ class ModelManager:
                 print("Используйте --hf_token или выполните 'huggingface-cli login'")
                 sys.exit(1)
         
+        # Если указан конкретный файл для скачивания
+        if self.args.hf_filename:
+            print(f"Скачивание конкретного файла: {self.args.hf_filename}")
+            self._download_single_hf_file(token)
+            return
+        
+        # Скачивание всех файлов из репозитория
         api = HfApi()
         print(f"Получение списка файлов в репозитории {self.args.hf_repo_id}...")
         try:
@@ -405,6 +451,46 @@ class ModelManager:
                 print(f"Скачан {local_path}")
             except Exception as e:
                 print(f"Ошибка при скачивании {file_path}: {e}")
+
+    def _download_single_hf_file(self, token):
+        """Скачивание одного конкретного файла с HuggingFace"""
+        import shutil
+        file_path = self.args.hf_filename
+        # Сохраняем файл с полной структурой папок
+        local_path = os.path.join(self.args.local_folder, file_path)
+        
+        # Проверяем, существует ли файл локально
+        if os.path.exists(local_path) and not self.args.overwrite:
+            print(f"Файл {local_path} уже существует. Используйте --overwrite для перезаписи.")
+            self.skipped_count += 1
+            return
+        
+        # Создаем директории если их нет
+        os.makedirs(os.path.dirname(local_path), exist_ok=True)
+        print(f"Скачиваем {self.args.hf_repo_id}/{file_path} → {local_path}")
+        
+        try:
+            # Используем временную директорию:
+            with tempfile.TemporaryDirectory() as tmp_cache_dir:
+                downloaded_path = hf_hub_download(
+                    repo_id=self.args.hf_repo_id,
+                    filename=file_path,
+                    token=token,
+                    repo_type="model",
+                    cache_dir=tmp_cache_dir  # скачиваем во временную директорию
+                )
+                
+                # Проверяем размер скачанного файла
+                file_size = os.path.getsize(downloaded_path)
+                if self._should_skip_file(file_path, file_size):
+                    return
+                    
+                shutil.copy2(downloaded_path, local_path)
+            # После выхода из with tmp_cache_dir удаляется
+            self.uploaded_count += 1
+            print(f"✅ Скачан {local_path}")
+        except Exception as e:
+            print(f"❌ Ошибка при скачивании {file_path}: {e}")
 
     def download_from_s3(self):
         try:
@@ -489,8 +575,23 @@ class ModelManager:
         
         print(f"✅ Операция завершена! Обработано: {self.uploaded_count}, пропущено: {self.skipped_count}, скрытых директорий пропущено: {self.hidden_dirs_skipped}")
 
-# python model_manager.py --action upload --storage google --gcs_bucket your_bucket_name --gcs_prefix models/ --local_folder workspace/models --gcs_credentials /workspace/models/gcs_credentials.json
-# python model_manager.py --action download --storage google --gcs_bucket your_bucket_name --gcs_prefix models/ --local_folder workspace/models --gcs_credentials /workspace/models/gcs_credentials.json
+# Примеры использования:
+# 
+# Загрузка в Google Cloud Storage:
+# python model_manager.py --action upload --storage google --gcs_bucket your_bucket_name --gcs_prefix models/ --local_folder ./models --gcs_credentials ./models/gcs_credentials.json
+# 
+# Скачивание из Google Cloud Storage:
+# python model_manager.py --action download --storage google --gcs_bucket your_bucket_name --gcs_prefix models/ --local_folder ./models --gcs_credentials ./models/gcs_credentials.json
+# 
+# Скачивание всех файлов из HuggingFace репозитория:
+# python model_manager.py --action download --storage huggingface --hf_repo_id Gerchegg/FLO_AI_VectorCharacters_NL_Slow_v2
+# 
+# Скачивание конкретного файла из HuggingFace репозитория:
+# python model_manager.py --action download --storage huggingface --hf_repo_id Gerchegg/FLO_AI_VectorCharacters_NL_Slow_v2 --hf_filename Models/FLO_AI_VectorCharacters_NL_Slow_v2.safetensors
+# 
+# Скачивание файла по прямому URL (самый простой способ):
+# python model_manager.py --action download --storage huggingface --hf_url "https://huggingface.co/Gerchegg/FLO_AI_VectorCharacters_NL_Slow_v2/resolve/main/Models/FLO_AI_VectorCharacters_NL_Slow_v2.safetensors"
+# 
 # bucket echeg_model_storage
 if __name__ == '__main__':
     uploader = ModelManager()

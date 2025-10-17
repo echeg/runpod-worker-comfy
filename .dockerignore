@@ -38,6 +38,7 @@ models/
 !models/diffusion_models/flux1-canny-dev.safetensors
 !models/diffusion_models/flux1-depth-dev.safetensors
 !models/diffusion_models/flux1-fill-dev.safetensors
+!models/Models/FLO_AI_VectorCharacters_NL_Slow_v2.safetensors
 
 # Ignore everything else not needed for build
 *.tar
