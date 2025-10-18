@@ -92,3 +92,9 @@ docker push echeg/nodes-and-base-models:0.4.1
 powershell -ExecutionPolicy Bypass -File .\push_all.ps1
 
 python build_df2_parallel.py --flux 0.4.1 --shared 0.4.1 --max-workers 4
+
+python build_v3.py --version 0.4.3 --skip
+python build_v3.py --version 0.4.3 --keep-dockerfiles
+
+
+docker build --target worker --build-arg MODEL_NAME=flux1-depth-dev.safetensors -t echeg/flux1-depth-worker:0.5.0 -f DF3_Multy .

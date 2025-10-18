@@ -1,0 +1,10 @@
+﻿ARG BASE_IMAGE
+ARG VERSION
+FROM ${BASE_IMAGE} AS worker
+
+# Удаление ComfyUI Manager, так как он не нужен для API
+RUN if [ -d "/comfyui/custom_nodes/ComfyUI-Manager" ]; then rm -rf /comfyui/custom_nodes/ComfyUI-Manager; fi
+
+COPY src/execution.py /comfyui/
+
+CMD ["/start.sh"]

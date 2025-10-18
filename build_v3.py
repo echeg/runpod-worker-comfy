@@ -3,6 +3,7 @@ from pathlib import Path
 import tempfile
 import argparse
 import os
+import concurrent.futures
 
 # Конфигурация вариантов и базовых образов
 VARIANTS = {
@@ -17,7 +18,11 @@ OUTPUT_TAG_SUFFIX = 'shared'
 
 
 def image_exists(tag):
-    result = subprocess.run(['docker', 'image', 'inspect', tag], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    result = subprocess.run(
+        ['docker', 'image', 'inspect', tag],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+    )
     return result.returncode == 0
 
 
@@ -32,7 +37,7 @@ def patch_dockerfile(base_lines, new_from, dest_path):
 
 
 def build_variant(variant, base_repo, version, shared_lines, tag_suffix, keep_files=False, skip=False):
-    base_from = f"{base_repo}:0.4.1"
+    base_from = f"{base_repo}:0.4.1 as base"
     tag = f"{base_repo}-{tag_suffix}:{version}"
 
     if not skip and image_exists(tag):
@@ -65,21 +70,39 @@ def main():
     parser.add_argument('--version', default='latest', help='Тег версии (по умолчанию: latest)')
     parser.add_argument('--keep-dockerfiles', action='store_true', help='Сохранять Dockerfile в ./dockerfiles')
     parser.add_argument('--skip', action='store_true', help='Только генерировать Dockerfile (без сборки)')
+    parser.add_argument('--workers', type=int, default=4, help='Количество параллельных сборок (по умолчанию: количество вариантов)')
     args = parser.parse_args()
 
     with open(SHARED_DOCKERFILE, 'r', encoding='utf-8') as f:
         shared_lines = f.readlines()
 
+    # Подготовка задач для сборки
+    tasks = []
     for variant, base_repo in VARIANTS.items():
-        try:
-            build_variant(
-                variant, base_repo, args.version,
-                shared_lines, OUTPUT_TAG_SUFFIX,
-                keep_files=args.keep_dockerfiles or args.skip,
-                skip=args.skip
-            )
-        except subprocess.CalledProcessError as e:
-            print(f"Ошибка при сборке {variant}: {e}")
+        tasks.append((
+            variant,
+            base_repo,
+            args.version,
+            shared_lines,
+            OUTPUT_TAG_SUFFIX,
+            args.keep_dockerfiles or args.skip,
+            args.skip
+        ))
+
+    # Определяем число рабочих потоков
+    max_workers = args.workers or len(tasks)
+
+    # Выполняем сборку параллельно
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_variant = {
+            executor.submit(build_variant, *task): task[0] for task in tasks
+        }
+        for future in concurrent.futures.as_completed(future_to_variant):
+            variant = future_to_variant[future]
+            try:
+                future.result()
+            except subprocess.CalledProcessError as e:
+                print(f"Ошибка при сборке {variant}: {e}")
 
 
 if __name__ == '__main__':

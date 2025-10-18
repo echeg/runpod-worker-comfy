@@ -1,0 +1,8 @@
+﻿ARG MODEL_FILE
+ARG VERSION
+
+# Stage 1: big model image
+FROM nvidia/cuda:12.6.3-cudnn-runtime-ubuntu22.04 AS base
+
+COPY models/diffusion_models/${MODEL_FILE} /comfyui/models/diffusion_models/${MODEL_FILE}
+RUN test -s /comfyui/models/diffusion_models/${MODEL_FILE}

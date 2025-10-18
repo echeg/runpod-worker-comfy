@@ -1,0 +1,56 @@
+﻿ARG BASE_IMAGE
+ARG VERSION
+FROM ${BASE_IMAGE} AS system
+
+# Prevents prompts from packages asking for user input during installation
+ENV DEBIAN_FRONTEND=noninteractive
+# Prefer binary wheels over source distributions for faster pip installations
+ENV PIP_PREFER_BINARY=1
+# Ensures output from python is printed immediately to the terminal without buffering
+ENV PYTHONUNBUFFERED=1
+# Speed up some cmake builds
+ENV CMAKE_BUILD_PARALLEL_LEVEL=8
+
+# Install Python, git and other necessary tools
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3-pip \
+    git \
+    wget \
+    libglib2.0-0 libsm6 libgl1 libxrender1 libxext6 \
+    && ln -sf /usr/bin/python3.11 /usr/bin/python \
+    && ln -sf /usr/bin/pip3 /usr/bin/pip
+
+# Clean up to reduce image size
+RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+RUN if [ -d /comfyui ]; then mv /comfyui /comfyui_old; fi && \
+    pip install --no-cache-dir comfy-cli && \
+    /usr/bin/yes | comfy --workspace /comfyui install --version 0.3.29 --cuda-version 12.6 --nvidia --skip-manager && \
+    if [ -d /comfyui_old/models/diffusion_models ]; then \
+        mkdir -p /comfyui/models/diffusion_models && \
+        mv /comfyui_old/models/diffusion_models/* /comfyui/models/diffusion_models/ 2>/dev/null || true; \
+    fi && \
+    rm -rf /comfyui_old
+
+# Change working directory to ComfyUI
+WORKDIR /comfyui
+
+# Install runpod
+RUN pip install --no-cache-dir runpod requests
+
+# Support for the network volume
+ADD src/extra_model_paths.yaml ./
+
+# Install PaddleOCR
+RUN pip install --no-cache-dir paddlepaddle paddleocr
+
+# Go back to the root
+WORKDIR /
+
+# Add scripts
+ADD src/start.sh src/rp_handler.py test_input.json src/model_manager.py src/download_default_models_for_nodes.sh ./
+RUN chmod +x /start.sh
+
+# Install onnxruntime-gpu for DWPose acceleration
+RUN pip install --no-cache-dir onnxruntime-gpu
