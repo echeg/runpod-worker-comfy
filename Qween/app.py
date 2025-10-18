@@ -55,7 +55,7 @@ if torch.cuda.is_available():
 # 1. Базовая модель для Text-to-Image
 logger.info("\n[1/3] Loading base Text2Image model...")
 model_id = os.environ.get("MODEL_ID", "Gerchegg/Qwen-Soloband-Diffusers")
-model_revision = os.environ.get("MODEL_REVISION")
+model_revision = os.environ.get("MODEL_REVISION", "main")
 
 try:
     start_time = time.time()
@@ -73,7 +73,8 @@ try:
         "torch_dtype": dtype,
         "device_map": device_map,
         "token": hf_token,
-        "local_files_only": True  # используем только локально предзагруженный кэш
+        "local_files_only": True,  # используем только локально предзагруженный кэш
+        "cache_dir": os.environ.get("HF_HOME", "/workspace/.cache/huggingface")
     }
     if model_revision:
         load_kwargs["revision"] = model_revision

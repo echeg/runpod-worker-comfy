@@ -37,6 +37,7 @@ with open('/run/secrets/HF_TOKEN','r') as f:
     token=f.read().strip()
 snapshot_download(
     repo_id='Gerchegg/Qwen-Soloband-Diffusers',
+    revision='main',
     cache_dir='/workspace/.cache/huggingface',
     allow_patterns=None,
     token=token
