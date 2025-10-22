@@ -8,7 +8,7 @@ ENV HF_HOME=/workspace/.cache/huggingface \
     GRADIO_SERVER_NAME=0.0.0.0 \
     GRADIO_SERVER_PORT=7860
 
-WORKDIR /workspace
+WORKDIR /opt/app
 
 # Базовые утилиты и HF CLI
 RUN apt-get update && apt-get install -y --no-install-recommends git wget ca-certificates \
@@ -20,14 +20,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends git wget ca-cer
 RUN --mount=type=secret,id=HF_TOKEN bash -lc ' \
   TOKEN=$(cat /run/secrets/HF_TOKEN); \
   hf download Gerchegg/Qwen-ImageForFlo-Advanced --repo-type space \
-    --local-dir /workspace/Qwen-ImageForFlo-Advanced --token "$TOKEN" \
+    --local-dir /opt/app/Qwen-ImageForFlo-Advanced --token "$TOKEN" \
 '
 
 # Подменяем app.py на локальную версию (использует local_files_only=True)
-COPY app.py /workspace/Qwen-ImageForFlo-Advanced/app.py
+COPY app.py /opt/app/Qwen-ImageForFlo-Advanced/app.py
 
 # Устанавливаем зависимости Space
-RUN pip install --no-cache-dir -r /workspace/Qwen-ImageForFlo-Advanced/requirements.txt
+RUN pip install --no-cache-dir -r /opt/app/Qwen-ImageForFlo-Advanced/requirements.txt
 
 # Предзагрузка весов модели в кэш HF
 RUN --mount=type=secret,id=HF_TOKEN python - <<'PY'
@@ -46,6 +46,6 @@ print('Prefetch done')
 PY
 
 EXPOSE 7860
-CMD ["python", "/workspace/Qwen-ImageForFlo-Advanced/app.py"]
+CMD ["python", "/opt/app/Qwen-ImageForFlo-Advanced/app.py"]
 
 
