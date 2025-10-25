@@ -1,0 +1,51 @@
+FROM runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404
+
+ENV HF_HOME=/workspace/.cache/huggingface \
+    HUGGINGFACE_HUB_CACHE=/workspace/.cache/huggingface/hub \
+    HF_HUB_ENABLE_HF_TRANSFER=0 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    GRADIO_SERVER_NAME=0.0.0.0 \
+    GRADIO_SERVER_PORT=7860
+
+WORKDIR /opt/app
+
+# Базовые утилиты и HF CLI
+RUN apt-get update && apt-get install -y --no-install-recommends git wget ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir huggingface_hub[cli]
+
+# Скачиваем Space код (без сохранения токена в слои)
+RUN --mount=type=secret,id=HF_TOKEN bash -lc ' \
+  TOKEN=$(cat /run/secrets/HF_TOKEN); \
+  hf download Gerchegg/Qwen-ImageForFlo-Advanced --repo-type space \
+    --local-dir /opt/app/Qwen-ImageForFlo-Advanced --token "$TOKEN" \
+'
+
+# Подменяем app.py на локальную версию (использует local_files_only=True)
+COPY app.py /opt/app/Qwen-ImageForFlo-Advanced/app.py
+
+# Устанавливаем зависимости Space
+RUN pip install --no-cache-dir -r /opt/app/Qwen-ImageForFlo-Advanced/requirements.txt
+
+# Предзагрузка весов модели в кэш HF
+RUN --mount=type=secret,id=HF_TOKEN python - <<'PY'
+import os
+from huggingface_hub import snapshot_download
+with open('/run/secrets/HF_TOKEN','r') as f:
+    token=f.read().strip()
+snapshot_download(
+    repo_id='Gerchegg/FH-LOREMAX-Comic-Diffusers_v1',
+    revision='main',
+    cache_dir='/workspace/.cache/huggingface',
+    allow_patterns=None,
+    token=token
+)
+print('Prefetch done')
+PY
+
+EXPOSE 7860
+CMD ["python", "/opt/app/Qwen-ImageForFlo-Advanced/app.py"]
+
+

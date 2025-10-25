@@ -1,0 +1,18 @@
+FROM gercheg/fh-loremax-full:0.0.2
+
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+# Путь к приложению в базовом образе
+WORKDIR /opt/app/Qwen-ImageForFlo-Advanced
+
+# Устанавливаем только runpod SDK, остальное уже включено в базовый образ
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir runpod
+
+# Копируем серверлесс-хендлер
+COPY handler.py /opt/app/Qwen-ImageForFlo-Advanced/handler.py
+
+# Serverless: не открываем порты, запускаем обработчик
+CMD ["python", "-u", "/opt/app/Qwen-ImageForFlo-Advanced/handler.py"]
+

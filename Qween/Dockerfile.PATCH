@@ -1,0 +1,16 @@
+# Быстрый патч для существующего образа без полной пересборки
+# Обновляет только handler.py и app.py с исправлениями
+
+FROM gercheg/fh-loremax-full-runpodserverless:latest
+
+# Копируем исправленные файлы поверх существующих
+COPY handler.py /app/handler.py
+COPY app.py /app/app.py
+
+# Проверяем что файлы на месте
+RUN echo "✓ Files updated successfully" && \
+    ls -lh /app/handler.py /app/app.py
+
+# Сохраняем ту же команду запуска что и в базовом образе
+# CMD уже определена в базовом образе
+
