@@ -47,6 +47,8 @@ if torch.cuda.is_available():
     for i in range(gpu_count):
         logger.info(f"  GPU {i}: {torch.cuda.get_device_name(i)}")
         logger.info(f"    Memory: {torch.cuda.get_device_properties(i).total_memory / 1024**3:.1f} GB")
+else:
+    gpu_count = 0
 
 # =================================================================
 # ЗАГРУЗКА МОДЕЛЕЙ
@@ -73,7 +75,6 @@ try:
         "torch_dtype": dtype,
         "device_map": device_map,
         "token": hf_token,
-        "local_files_only": True,  # используем только локально предзагруженный кэш
         "cache_dir": os.environ.get("HF_HOME", "/workspace/.cache/huggingface")
     }
     if model_revision:
@@ -129,24 +130,39 @@ logger.info("=" * 60)
 # HELPER FUNCTIONS
 # =================================================================
 
-def resize_image(input_image, max_size=1024):
-    """Изменяет размер изображения с сохранением пропорций (кратно 8)"""
+def resize_image(input_image, max_size=2048):
+    """
+    Изменяет размер изображения с сохранением пропорций (кратно 16).
+    Если изображение меньше max_size, оставляет оригинальный размер (с округлением до 16).
+    """
     w, h = input_image.size
     aspect_ratio = w / h
     
-    if w > h:
-        new_w = max_size
-        new_h = int(new_w / aspect_ratio)
-    else:
-        new_h = max_size
-        new_w = int(new_h * aspect_ratio)
+    # Если изображение уже меньше max_size, просто округляем до 16
+    if w <= max_size and h <= max_size:
+        new_w = w - (w % 16)
+        new_h = h - (h % 16)
+        if new_w == 0: new_w = 16
+        if new_h == 0: new_h = 16
+        if new_w != w or new_h != h:
+            return input_image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+        return input_image
     
-    # Кратно 8
-    new_w = new_w - (new_w % 8)
-    new_h = new_h - (new_h % 8)
+    # Определяем масштабирование с сохранением пропорций
+    scale = min(max_size / w, max_size / h)
+    new_w = int(w * scale)
+    new_h = int(h * scale)
     
-    if new_w == 0: new_w = 8
-    if new_h == 0: new_h = 8
+    # Округляем до ближайшего кратного 16
+    new_w = new_w - (new_w % 16)
+    new_h = new_h - (new_h % 16)
+    
+    # Минимальные размеры
+    if new_w < 16: new_w = 16
+    if new_h < 16: new_h = 16
+    
+    aspect_original = w / h
+    aspect_new = new_w / new_h
     
     return input_image.resize((new_w, new_h), Image.Resampling.LANCZOS)
 
@@ -290,7 +306,7 @@ def generate_text2img(
     num_inference_steps=40,
     lora_name="None",
     lora_scale=1.0,
-    progress=gr.Progress(track_tqdm=True)
+    progress=None
 ):
     """Text-to-Image генерация"""
     
@@ -354,7 +370,7 @@ def generate_img2img(
     num_inference_steps=40,
     lora_name="None",
     lora_scale=1.0,
-    progress=gr.Progress(track_tqdm=True)
+    progress=None
 ):
     """Image-to-Image генерация"""
     
@@ -365,13 +381,15 @@ def generate_img2img(
     if input_image is None:
         raise gr.Error("Please upload an input image")
     
+    original_width, original_height = input_image.size
     if randomize_seed:
         seed = random.randint(0, MAX_SEED)
     
-    # Изменяем размер изображения
-    resized = resize_image(input_image, max_size=1024)
+    # Изменяем размер изображения (max 3072 для поддержки больших изображений)
+ 
+    resized = resize_image(input_image, max_size=3072)
     
-    logger.info(f"  Prompt: {prompt[:100]}...")
+    # Логирование параметров
     logger.info(f"  Input size: {input_image.size} → {resized.size}")
     logger.info(f"  Strength: {strength}")
     logger.info(f"  Steps: {num_inference_steps}, CFG: {guidance_scale}")
@@ -392,16 +410,25 @@ def generate_img2img(
         
         generator = torch.Generator(device=device).manual_seed(seed)
         
+        # КРИТИЧНО: Передаем width и height явно, иначе пайплайн использует дефолтные 1024x1024!
+        img_width, img_height = resized.size
+        
+        # Генерация изображения
+        effective_steps = int(num_inference_steps * strength)
+        
         image = pipe_img2img(
             prompt=prompt,
             negative_prompt=negative_prompt,
             image=resized,
+            width=img_width,
+            height=img_height,
             strength=strength,
             num_inference_steps=num_inference_steps,
             true_cfg_scale=guidance_scale,
             generator=generator
         ).images[0]
         
+        final_width, final_height = image.size
         # Выгружаем LoRA
         if lora_name != "None":
             pipe_img2img.unload_lora_weights()
